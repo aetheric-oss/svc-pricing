@@ -1,12 +1,12 @@
 SHELL := /bin/bash
 
-DOCKER_NAME      := arrow-svc-rust
-IMAGE_NAME       := svc-rust
+DOCKER_NAME      := arrow-lib-pricing
+IMAGE_NAME       := lib-pricing
 BUILD_IMAGE_NAME := ghcr.io/arrow-air/tools/arrow-rust
 BUILD_IMAGE_TAG  := latest
 
 DOCKER_PORT      := 8080
-HOST_PORT        := 8080
+HOST_PORT        := 8001
 
 
 # We might not have a Cargo.toml file in the root dir
