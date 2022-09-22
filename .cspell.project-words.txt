@@ -12,3 +12,7 @@ taplo
 tput
 yapf
 proto
+prost
+rideshare
+repr
+codegen
