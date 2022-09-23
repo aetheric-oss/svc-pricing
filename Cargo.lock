@@ -630,6 +630,9 @@ name = "svc-pricing"
 version = "0.1.0"
 dependencies = [
  "cargo-husky",
+ "prost",
+ "prost-types",
+ "tonic",
  "tonic-build",
 ]
 
