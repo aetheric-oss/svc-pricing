@@ -15,9 +15,9 @@ pub struct ReadyResponse {
 }
 /// Get the price for a type of service
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPrice {
+pub struct QueryPricing {
     /// service type
-    #[prost(enumeration="query_price::ServiceType", tag="1")]
+    #[prost(enumeration="query_pricing::ServiceType", tag="1")]
     pub service_type: i32,
     /// distance in miles
     ///
@@ -30,8 +30,8 @@ pub struct QueryPrice {
     #[prost(float, tag="2")]
     pub distance: f32,
 }
-/// Nested message and enum types in `QueryPrice`.
-pub mod query_price {
+/// Nested message and enum types in `QueryPricing`.
+pub mod query_pricing {
     /// Service type
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
@@ -56,7 +56,7 @@ pub mod query_price {
 }
 /// Price for a service
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PriceResponse {
+pub struct PricingResponse {
     /// price in dollars
     #[prost(float, tag="1")]
     pub price: f32,
@@ -220,10 +220,10 @@ pub mod pricing_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        pub async fn get_price(
+        pub async fn get_pricing(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryPrice>,
-        ) -> Result<tonic::Response<super::PriceResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::QueryPricing>,
+        ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -234,7 +234,7 @@ pub mod pricing_client {
                     )
                 })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grpc.Pricing/GetPrice");
+            let path = http::uri::PathAndQuery::from_static("/grpc.Pricing/GetPricing");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

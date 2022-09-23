@@ -13,9 +13,9 @@ pub struct ReadyResponse {
 }
 /// Get the price for a type of service
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPrice {
+pub struct QueryPricing {
     /// service type
-    #[prost(enumeration="query_price::ServiceType", tag="1")]
+    #[prost(enumeration="query_pricing::ServiceType", tag="1")]
     pub service_type: i32,
     /// distance in miles
     ///
@@ -28,8 +28,8 @@ pub struct QueryPrice {
     #[prost(float, tag="2")]
     pub distance: f32,
 }
-/// Nested message and enum types in `QueryPrice`.
-pub mod query_price {
+/// Nested message and enum types in `QueryPricing`.
+pub mod query_pricing {
     /// Service type
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
@@ -54,7 +54,7 @@ pub mod query_price {
 }
 /// Price for a service
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PriceResponse {
+pub struct PricingResponse {
     /// price in dollars
     #[prost(float, tag="1")]
     pub price: f32,
@@ -213,10 +213,10 @@ pub mod pricing_server {
     ///Generated trait containing gRPC methods that should be implemented for use with PricingServer.
     #[async_trait]
     pub trait Pricing: Send + Sync + 'static {
-        async fn get_price(
+        async fn get_pricing(
             &self,
-            request: tonic::Request<super::QueryPrice>,
-        ) -> Result<tonic::Response<super::PriceResponse>, tonic::Status>;
+            request: tonic::Request<super::QueryPricing>,
+        ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status>;
     }
     /// Pricing for different services: cargo, rideshare, and charter
     #[derive(Debug)]
@@ -278,22 +278,22 @@ pub mod pricing_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/grpc.Pricing/GetPrice" => {
+                "/grpc.Pricing/GetPricing" => {
                     #[allow(non_camel_case_types)]
-                    struct GetPriceSvc<T: Pricing>(pub Arc<T>);
-                    impl<T: Pricing> tonic::server::UnaryService<super::QueryPrice>
-                    for GetPriceSvc<T> {
-                        type Response = super::PriceResponse;
+                    struct GetPricingSvc<T: Pricing>(pub Arc<T>);
+                    impl<T: Pricing> tonic::server::UnaryService<super::QueryPricing>
+                    for GetPricingSvc<T> {
+                        type Response = super::PricingResponse;
                         type Future = BoxFuture<
                             tonic::Response<Self::Response>,
                             tonic::Status,
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryPrice>,
+                            request: tonic::Request<super::QueryPricing>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
-                            let fut = async move { (*inner).get_price(request).await };
+                            let fut = async move { (*inner).get_pricing(request).await };
                             Box::pin(fut)
                         }
                     }
@@ -302,7 +302,7 @@ pub mod pricing_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = GetPriceSvc(inner);
+                        let method = GetPricingSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
