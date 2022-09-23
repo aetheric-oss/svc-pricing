@@ -131,11 +131,11 @@ pub mod is_ready_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/grpc.isReady/isReady" => {
+                "/grpc.IsReady/IsReady" => {
                     #[allow(non_camel_case_types)]
-                    struct isReadySvc<T: IsReady>(pub Arc<T>);
+                    struct IsReadySvc<T: IsReady>(pub Arc<T>);
                     impl<T: IsReady> tonic::server::UnaryService<super::QueryIsReady>
-                    for isReadySvc<T> {
+                    for IsReadySvc<T> {
                         type Response = super::ReadyResponse;
                         type Future = BoxFuture<
                             tonic::Response<Self::Response>,
@@ -155,7 +155,7 @@ pub mod is_ready_server {
                     let inner = self.inner.clone();
                     let fut = async move {
                         let inner = inner.0;
-                        let method = isReadySvc(inner);
+                        let method = IsReadySvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
                         let mut grpc = tonic::server::Grpc::new(codec)
                             .apply_compression_config(
@@ -203,7 +203,7 @@ pub mod is_ready_server {
         }
     }
     impl<T: IsReady> tonic::server::NamedService for IsReadyServer<T> {
-        const NAME: &'static str = "grpc.isReady";
+        const NAME: &'static str = "grpc.IsReady";
     }
 }
 /// Generated server implementations.

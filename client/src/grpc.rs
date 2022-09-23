@@ -145,7 +145,7 @@ pub mod is_ready_client {
                     )
                 })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grpc.isReady/isReady");
+            let path = http::uri::PathAndQuery::from_static("/grpc.IsReady/IsReady");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
