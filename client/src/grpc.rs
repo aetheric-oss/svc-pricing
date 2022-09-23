@@ -19,7 +19,7 @@ pub struct QueryPricing {
     /// service type
     #[prost(enumeration="query_pricing::ServiceType", tag="1")]
     pub service_type: i32,
-    /// distance in miles
+    /// distance in kilometers
     ///
     /// weight in kg - Not in use for now
     ///

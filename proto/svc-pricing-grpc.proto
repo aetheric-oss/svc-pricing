@@ -42,7 +42,7 @@ service Pricing {
 message QueryPricing {
     // service type
     ServiceType service_type = 1;
-    // distance in miles
+    // distance in kilometers
     float distance = 2;
     // weight in kg - Not in use for now
     //
