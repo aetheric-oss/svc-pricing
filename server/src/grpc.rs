@@ -11,11 +11,19 @@ pub struct ReadyResponse {
     #[prost(bool, tag="1")]
     pub ready: bool,
 }
-/// Get the price for a type of service
+/// Get the price for a type of service.
+///
+/// Two required fields:
+/// - `service_type`: the type of service. 1 = cargo, 2 = rideshare, 3 =
+///    charter
+/// - `distance`: the distance of the trip in km
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPricing {
+pub struct PricingRequest {
     /// service type
-    #[prost(enumeration="query_pricing::ServiceType", tag="1")]
+    /// 1 = cargo
+    /// 2 = rideshare
+    /// 3 = charter
+    #[prost(enumeration="pricing_request::ServiceType", tag="1")]
     pub service_type: i32,
     /// distance in kilometers
     ///
@@ -28,8 +36,8 @@ pub struct QueryPricing {
     #[prost(float, tag="2")]
     pub distance: f32,
 }
-/// Nested message and enum types in `QueryPricing`.
-pub mod query_pricing {
+/// Nested message and enum types in `PricingRequest`.
+pub mod pricing_request {
     /// Service type
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
@@ -215,7 +223,7 @@ pub mod pricing_server {
     pub trait Pricing: Send + Sync + 'static {
         async fn get_pricing(
             &self,
-            request: tonic::Request<super::QueryPricing>,
+            request: tonic::Request<super::PricingRequest>,
         ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status>;
     }
     /// Pricing for different services: cargo, rideshare, and charter
@@ -281,7 +289,7 @@ pub mod pricing_server {
                 "/grpc.Pricing/GetPricing" => {
                     #[allow(non_camel_case_types)]
                     struct GetPricingSvc<T: Pricing>(pub Arc<T>);
-                    impl<T: Pricing> tonic::server::UnaryService<super::QueryPricing>
+                    impl<T: Pricing> tonic::server::UnaryService<super::PricingRequest>
                     for GetPricingSvc<T> {
                         type Response = super::PricingResponse;
                         type Future = BoxFuture<
@@ -290,7 +298,7 @@ pub mod pricing_server {
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::QueryPricing>,
+                            request: tonic::Request<super::PricingRequest>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).get_pricing(request).await };

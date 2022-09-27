@@ -35,12 +35,20 @@ message ReadyResponse {
 
 // Pricing for different services: cargo, rideshare, and charter
 service Pricing {
-    rpc GetPricing (QueryPricing) returns (PricingResponse);
+    rpc GetPricing (PricingRequest) returns (PricingResponse);
 }
 
-// Get the price for a type of service
-message QueryPricing {
+// Get the price for a type of service.
+//
+// Two required fields:
+// - `service_type`: the type of service. 1 = cargo, 2 = rideshare, 3 =
+//   charter
+// - `distance`: the distance of the trip in km
+message PricingRequest {
     // service type
+    // 1 = cargo
+    // 2 = rideshare
+    // 3 = charter
     ServiceType service_type = 1;
     // distance in kilometers
     float distance = 2;

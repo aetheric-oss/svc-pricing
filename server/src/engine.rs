@@ -1,12 +1,12 @@
 //! Implementation of pricing logics based on the ride type.
 
-use crate::grpc::QueryPricing;
+use crate::grpc::PricingRequest;
 
 /// Get pricing for a given query
 ///
 /// # Arguments
-/// * `request` - QueryPricing
-pub fn get_pricing(query: QueryPricing) -> f32 {
+/// * `request` - PricingRequest
+pub fn get_pricing(query: PricingRequest) -> f32 {
     match query.service_type {
         0 => get_cargo_pricing(query),
         1 => get_rideshare_pricing(query),
@@ -45,12 +45,12 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE: f32 = 0.3 * CARGO_DEPRECIATION_RATE;
 /// Apollo](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo).
 ///
 /// # Arguments
-/// * `query` - A [`QueryPricing`] struct that contains information
+/// * `query` - A [`PricingRequest`] struct that contains information
 ///   needed to compute the pricing.
 ///
 /// # Returns
 /// * `f32` - The cost of the flight trip in dollars.
-fn get_cargo_pricing(query: QueryPricing) -> f32 {
+fn get_cargo_pricing(query: PricingRequest) -> f32 {
     let distance = query.distance;
     let trip_duration = distance / CARGO_CRUISE_SPEED;
     let trip_cruise_cost = trip_duration * CARGO_ELECTRICITY_COST * CARGO_CRUISE_POWER_CONSUMPTION;
@@ -60,13 +60,13 @@ fn get_cargo_pricing(query: QueryPricing) -> f32 {
 }
 
 /// TODO: Pricing for rideshare.
-fn get_rideshare_pricing(query: QueryPricing) -> f32 {
+fn get_rideshare_pricing(query: PricingRequest) -> f32 {
     //TODO
     get_cargo_pricing(query)
 }
 
 /// TODO: Pricing for charter.
-fn get_charter_pricing(query: QueryPricing) -> f32 {
+fn get_charter_pricing(query: PricingRequest) -> f32 {
     //TODO
     get_cargo_pricing(query)
 }
@@ -77,7 +77,7 @@ mod tests {
 
     #[test]
     fn test_get_cargo_pricing() {
-        let query = QueryPricing {
+        let query = PricingRequest {
             service_type: 0,
             distance: 160.934,
         };

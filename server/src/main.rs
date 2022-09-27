@@ -10,7 +10,7 @@ use tonic::transport::Server;
 use crate::engine::get_pricing;
 use crate::grpc::{
     pricing_server::{Pricing, PricingServer},
-    PricingResponse, QueryPricing,
+    PricingRequest, PricingResponse,
 };
 
 /// Struct that implements the Pricing trait.
@@ -31,7 +31,7 @@ impl Pricing for ArrowPricing {
     ///   dollars.
     async fn get_pricing(
         &self,
-        request: tonic::Request<QueryPricing>,
+        request: tonic::Request<PricingRequest>,
     ) -> Result<tonic::Response<PricingResponse>, tonic::Status> {
         let query = request.into_inner();
         let price = get_pricing(query);

@@ -13,11 +13,19 @@ pub struct ReadyResponse {
     #[prost(bool, tag="1")]
     pub ready: bool,
 }
-/// Get the price for a type of service
+/// Get the price for a type of service.
+///
+/// Two required fields:
+/// - `service_type`: the type of service. 1 = cargo, 2 = rideshare, 3 =
+///    charter
+/// - `distance`: the distance of the trip in km
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryPricing {
+pub struct PricingRequest {
     /// service type
-    #[prost(enumeration="query_pricing::ServiceType", tag="1")]
+    /// 1 = cargo
+    /// 2 = rideshare
+    /// 3 = charter
+    #[prost(enumeration="pricing_request::ServiceType", tag="1")]
     pub service_type: i32,
     /// distance in kilometers
     ///
@@ -30,8 +38,8 @@ pub struct QueryPricing {
     #[prost(float, tag="2")]
     pub distance: f32,
 }
-/// Nested message and enum types in `QueryPricing`.
-pub mod query_pricing {
+/// Nested message and enum types in `PricingRequest`.
+pub mod pricing_request {
     /// Service type
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
@@ -222,7 +230,7 @@ pub mod pricing_client {
         }
         pub async fn get_pricing(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryPricing>,
+            request: impl tonic::IntoRequest<super::PricingRequest>,
         ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status> {
             self.inner
                 .ready()
