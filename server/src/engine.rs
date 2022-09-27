@@ -62,13 +62,13 @@ fn get_cargo_pricing(query: PricingRequest) -> f32 {
 /// TODO: Pricing for rideshare.
 fn get_rideshare_pricing(query: PricingRequest) -> f32 {
     //TODO
-    get_cargo_pricing(query)
+    0.5 * get_cargo_pricing(query)
 }
 
 /// TODO: Pricing for charter.
 fn get_charter_pricing(query: PricingRequest) -> f32 {
     //TODO
-    get_cargo_pricing(query)
+    2.0 * get_cargo_pricing(query)
 }
 
 #[cfg(test)]
