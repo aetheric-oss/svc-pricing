@@ -21,7 +21,7 @@ pub mod grpc {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut client = PricingClient::connect("http://[::1]:50051").await?;
     let request = tonic::Request::new(PricingRequest {
-        service_type: 1, // 1 for cargo, 2 for rideshare, 3 for charter
+        service_type: 0, // 0 for cargo, 1 for rideshare, 2 for charter
         distance: 100.0, // in km
     });
 

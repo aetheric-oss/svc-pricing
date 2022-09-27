@@ -16,15 +16,15 @@ pub struct ReadyResponse {
 /// Get the price for a type of service.
 ///
 /// Two required fields:
-/// - `service_type`: the type of service. 1 = cargo, 2 = rideshare, 3 =
+/// - `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
 ///    charter
 /// - `distance`: the distance of the trip in km
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingRequest {
     /// service type
-    /// 1 = cargo
-    /// 2 = rideshare
-    /// 3 = charter
+    /// 0 = cargo
+    /// 1 = rideshare
+    /// 2 = charter
     #[prost(enumeration="pricing_request::ServiceType", tag="1")]
     pub service_type: i32,
     /// distance in kilometers

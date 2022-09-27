@@ -41,14 +41,14 @@ service Pricing {
 // Get the price for a type of service.
 //
 // Two required fields:
-// - `service_type`: the type of service. 1 = cargo, 2 = rideshare, 3 =
+// - `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
 //   charter
 // - `distance`: the distance of the trip in km
 message PricingRequest {
     // service type
-    // 1 = cargo
-    // 2 = rideshare
-    // 3 = charter
+    // 0 = cargo
+    // 1 = rideshare
+    // 2 = charter
     ServiceType service_type = 1;
     // distance in kilometers
     float distance = 2;
