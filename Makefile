@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
-DOCKER_NAME      := arrow-lib-pricing
-IMAGE_NAME       := lib-pricing
+DOCKER_NAME      := arrow-svc-pricing
+IMAGE_NAME       := svc-pricing
 BUILD_IMAGE_NAME := ghcr.io/arrow-air/tools/arrow-rust
 BUILD_IMAGE_TAG  := latest
 
