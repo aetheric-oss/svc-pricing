@@ -14,11 +14,11 @@ package grpc;
 
 // Check if the service is ready to accept requests.
 service IsReady {
-    rpc IsReady (QueryIsReady) returns (ReadyResponse);
+    rpc IsReady (ReadyRequest) returns (ReadyResponse);
 }
 
 // Are you Ready?
-message QueryIsReady {
+message ReadyRequest {
     // arbitrary value
     bool arbitrary = 1;
 }

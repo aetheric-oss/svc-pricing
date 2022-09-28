@@ -2,17 +2,18 @@
 
 ///generates .rs files in src directory
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // TODO Also import common interface files
+    let server_config = tonic_build::configure()
+        .type_attribute("ReadyRequest", "#[derive(Eq)]")
+        .type_attribute("ReadyResponse", "#[derive(Eq)]");
+    let client_config = server_config.clone();
     // Build the Client
-    tonic_build::configure()
+    client_config
         .build_server(false)
         .out_dir("../client/src/")
-        .type_attribute("QueryIsReady", "#[derive(Eq)]")
-        .type_attribute("ReadyResponse", "#[derive(Eq)]")
         .compile(&["../proto/svc-pricing-grpc.proto"], &["../proto"])?;
 
     // Build the Server
-    tonic_build::configure()
+    server_config
         .build_client(false)
         .out_dir("src/")
         .compile(&["../proto/svc-pricing-grpc.proto"], &["../proto"])?;

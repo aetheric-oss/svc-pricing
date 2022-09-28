@@ -1,7 +1,7 @@
 /// Are you Ready?
 #[derive(Eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryIsReady {
+pub struct ReadyRequest {
     /// arbitrary value
     #[prost(bool, tag="1")]
     pub arbitrary: bool,
@@ -141,7 +141,7 @@ pub mod is_ready_client {
         }
         pub async fn is_ready(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryIsReady>,
+            request: impl tonic::IntoRequest<super::ReadyRequest>,
         ) -> Result<tonic::Response<super::ReadyResponse>, tonic::Status> {
             self.inner
                 .ready()
