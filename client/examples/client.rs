@@ -3,14 +3,9 @@
 //! This is an example of a gRPC client that connects to Arrow's pricing
 //! server.
 
-use grpc::pricing_client::PricingClient;
-use grpc::PricingRequest;
-
-///module svc_scheduler generated from svc-scheduler.proto
-pub mod grpc {
-    #![allow(unused_qualifications)]
-    include!("../src/grpc.rs");
-}
+use cargo_client::pricing_grpc;
+use pricing_grpc::pricing_client::PricingClient;
+use pricing_grpc::PricingRequest;
 
 /// Example svc-pricing-client.
 ///
