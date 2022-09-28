@@ -22,17 +22,17 @@ pub fn get_pricing(query: PricingRequest) -> f32 {
 // ------------------------------------------------------------------
 
 /// Take off and landing cost in dollars.
-const CARGO_TOL_COST: f32 = 2.8;
+const CARGO_TOL_COST_USD: f32 = 2.8;
 /// Cruise speed in kilometers per hour.
-const CARGO_CRUISE_SPEED: f32 = 240.0;
+const CARGO_CRUISE_SPEED_KM_PER_HR: f32 = 240.0;
 /// Electricity (kw) needed to power every hour of cruise flight.
-const CARGO_CRUISE_POWER_CONSUMPTION: f32 = 71.0;
+const CARGO_CRUISE_POWER_CONSUMPTION_KW: f32 = 71.0;
 /// Electricity cost per kilowatt hour in dollars.
-const CARGO_ELECTRICITY_COST: f32 = 0.3335;
+const CARGO_ELECTRICITY_COST_USD_PER_KWH: f32 = 0.3335;
 /// Depreciation rate of the aircraft in dollars per hour.
-const CARGO_DEPRECIATION_RATE: f32 = 10.5;
+const CARGO_DEPRECIATION_RATE_USD_PER_HR: f32 = 10.5;
 /// Repair and maintenance cost in dollars per hour.
-const CARGO_REPAIR_AND_MAINTENANCE_RATE: f32 = 0.3 * CARGO_DEPRECIATION_RATE;
+const CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR: f32 = 0.3 * CARGO_DEPRECIATION_RATE_USD_PER_HR;
 
 // ------------------------------------------------------------------
 // private functions
@@ -52,11 +52,12 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE: f32 = 0.3 * CARGO_DEPRECIATION_RATE;
 /// * `f32` - The cost of the flight trip in dollars.
 fn get_cargo_pricing(query: PricingRequest) -> f32 {
     let distance = query.distance;
-    let trip_duration = distance / CARGO_CRUISE_SPEED;
-    let trip_cruise_cost = trip_duration * CARGO_ELECTRICITY_COST * CARGO_CRUISE_POWER_CONSUMPTION;
-    let depreciation_cost = trip_duration * CARGO_DEPRECIATION_RATE;
-    let repair_and_maintenance_cost = trip_duration * CARGO_REPAIR_AND_MAINTENANCE_RATE;
-    CARGO_TOL_COST + trip_cruise_cost + depreciation_cost + repair_and_maintenance_cost
+    let trip_duration = distance / CARGO_CRUISE_SPEED_KM_PER_HR;
+    let trip_cruise_cost =
+        trip_duration * CARGO_ELECTRICITY_COST_USD_PER_KWH * CARGO_CRUISE_POWER_CONSUMPTION_KW;
+    let depreciation_cost = trip_duration * CARGO_DEPRECIATION_RATE_USD_PER_HR;
+    let repair_and_maintenance_cost = trip_duration * CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR;
+    CARGO_TOL_COST_USD + trip_cruise_cost + depreciation_cost + repair_and_maintenance_cost
 }
 
 /// TODO: Pricing for rideshare.
