@@ -2,13 +2,13 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryIsReady {
     /// arbitrary value
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub arbitrary: bool,
 }
 /// I'm Ready
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadyResponse {
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub ready: bool,
 }
 /// Get the price for a type of service.
@@ -23,7 +23,7 @@ pub struct PricingRequest {
     /// 0 = cargo
     /// 1 = rideshare
     /// 2 = charter
-    #[prost(enumeration="pricing_request::ServiceType", tag="1")]
+    #[prost(enumeration = "pricing_request::ServiceType", tag = "1")]
     pub service_type: i32,
     /// distance in kilometers
     ///
@@ -33,7 +33,7 @@ pub struct PricingRequest {
     /// impacts pricing
     ///
     /// required float weight_kg = 3;
-    #[prost(float, tag="2")]
+    #[prost(float, tag = "2")]
     pub distance: f32,
 }
 /// Nested message and enum types in `PricingRequest`.
@@ -64,7 +64,7 @@ pub mod pricing_request {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingResponse {
     /// price in dollars
-    #[prost(float, tag="1")]
+    #[prost(float, tag = "1")]
     pub price: f32,
 }
 /// Generated server implementations.
@@ -99,10 +99,7 @@ pub mod is_ready_server {
                 send_compression_encodings: Default::default(),
             }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> InterceptedService<Self, F>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
         where
             F: tonic::service::Interceptor,
         {
@@ -130,10 +127,7 @@ pub mod is_ready_server {
         type Response = http::Response<tonic::body::BoxBody>;
         type Error = std::convert::Infallible;
         type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(
-            &mut self,
-            _cx: &mut Context<'_>,
-        ) -> Poll<Result<(), Self::Error>> {
+        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
             Poll::Ready(Ok(()))
         }
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
@@ -142,13 +136,9 @@ pub mod is_ready_server {
                 "/grpc.IsReady/IsReady" => {
                     #[allow(non_camel_case_types)]
                     struct IsReadySvc<T: IsReady>(pub Arc<T>);
-                    impl<T: IsReady> tonic::server::UnaryService<super::QueryIsReady>
-                    for IsReadySvc<T> {
+                    impl<T: IsReady> tonic::server::UnaryService<super::QueryIsReady> for IsReadySvc<T> {
                         type Response = super::ReadyResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::QueryIsReady>,
@@ -165,28 +155,23 @@ pub mod is_ready_server {
                         let inner = inner.0;
                         let method = IsReadySvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            );
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
                     Box::pin(fut)
                 }
-                _ => {
-                    Box::pin(async move {
-                        Ok(
-                            http::Response::builder()
-                                .status(200)
-                                .header("grpc-status", "12")
-                                .header("content-type", "application/grpc")
-                                .body(empty_body())
-                                .unwrap(),
-                        )
-                    })
-                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
             }
         }
     }
@@ -246,10 +231,7 @@ pub mod pricing_server {
                 send_compression_encodings: Default::default(),
             }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> InterceptedService<Self, F>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> InterceptedService<Self, F>
         where
             F: tonic::service::Interceptor,
         {
@@ -277,10 +259,7 @@ pub mod pricing_server {
         type Response = http::Response<tonic::body::BoxBody>;
         type Error = std::convert::Infallible;
         type Future = BoxFuture<Self::Response, Self::Error>;
-        fn poll_ready(
-            &mut self,
-            _cx: &mut Context<'_>,
-        ) -> Poll<Result<(), Self::Error>> {
+        fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
             Poll::Ready(Ok(()))
         }
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
@@ -289,13 +268,9 @@ pub mod pricing_server {
                 "/grpc.Pricing/GetPricing" => {
                     #[allow(non_camel_case_types)]
                     struct GetPricingSvc<T: Pricing>(pub Arc<T>);
-                    impl<T: Pricing> tonic::server::UnaryService<super::PricingRequest>
-                    for GetPricingSvc<T> {
+                    impl<T: Pricing> tonic::server::UnaryService<super::PricingRequest> for GetPricingSvc<T> {
                         type Response = super::PricingResponse;
-                        type Future = BoxFuture<
-                            tonic::Response<Self::Response>,
-                            tonic::Status,
-                        >;
+                        type Future = BoxFuture<tonic::Response<Self::Response>, tonic::Status>;
                         fn call(
                             &mut self,
                             request: tonic::Request<super::PricingRequest>,
@@ -312,28 +287,23 @@ pub mod pricing_server {
                         let inner = inner.0;
                         let method = GetPricingSvc(inner);
                         let codec = tonic::codec::ProstCodec::default();
-                        let mut grpc = tonic::server::Grpc::new(codec)
-                            .apply_compression_config(
-                                accept_compression_encodings,
-                                send_compression_encodings,
-                            );
+                        let mut grpc = tonic::server::Grpc::new(codec).apply_compression_config(
+                            accept_compression_encodings,
+                            send_compression_encodings,
+                        );
                         let res = grpc.unary(method, req).await;
                         Ok(res)
                     };
                     Box::pin(fut)
                 }
-                _ => {
-                    Box::pin(async move {
-                        Ok(
-                            http::Response::builder()
-                                .status(200)
-                                .header("grpc-status", "12")
-                                .header("content-type", "application/grpc")
-                                .body(empty_body())
-                                .unwrap(),
-                        )
-                    })
-                }
+                _ => Box::pin(async move {
+                    Ok(http::Response::builder()
+                        .status(200)
+                        .header("grpc-status", "12")
+                        .header("content-type", "application/grpc")
+                        .body(empty_body())
+                        .unwrap())
+                }),
             }
         }
     }
