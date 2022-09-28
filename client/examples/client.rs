@@ -3,9 +3,9 @@
 //! This is an example of a gRPC client that connects to Arrow's pricing
 //! server.
 
-use cargo_client::pricing_grpc;
 use pricing_grpc::pricing_client::PricingClient;
 use pricing_grpc::PricingRequest;
+use svc_pricing_client::pricing_grpc;
 
 /// Example svc-pricing-client.
 ///

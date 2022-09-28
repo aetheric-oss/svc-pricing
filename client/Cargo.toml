@@ -15,7 +15,7 @@ tonic       = "0.8.1"
 tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
 
 [lib]
-name = "cargo_client"
+name = "svc_pricing_client"
 path = "src/lib.rs"
 
 [[example]]
