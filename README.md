@@ -1,7 +1,9 @@
 ![Arrow Banner](https://github.com/Arrow-air/.github/raw/main/profile/assets/arrow_v2_twitter-banner_neu.png)
 
 # `svc-pricing`
-
+![Rust Checks](https://github.com/arrow-air/svc-pricing/actions/workflows/rust_ci.yml/badge.svg?branch=main)
+![Python Flake8](https://github.com/arrow-air/svc-pricing/actions/workflows/python_ci.yml/badge.svg?branch=main)
+![Arrow DAO Discord](https://img.shields.io/discord/853833144037277726?style=plastic)
 
 ## :telescope: Overview
 
