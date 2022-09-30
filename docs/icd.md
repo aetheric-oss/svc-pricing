@@ -8,59 +8,88 @@
 
 ## Overview
 
-This document details the common software interfaces required by all services in the Arrow ecosystem.
+This document details the endpoints provided by the `svc-pricing` service.
 
-Each service may add additional interfaces.
+Currently, the server is configured to be live on `localhost:50051`, and is subject to change when deployed to production. This address can be interfaced by any API platforms like Postman, or even `curl`. 
+
+However, `svc-pricing` is intended to be consumed by other Arrow micro-services through the `svc-pricing-client` library, rather than the server being directly connected to and interacted with frontend clients.
+
 
 Attribute | Description
 --- | ---
-Status | Draft
+Status | :yellow_circle: Development
 
 ## Related Documents
 
 Document | Description
 --- | ---
-:construction: Requirements & User Stories :construction: | Requirements and user stories
+[Pricing Model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo) | Unit economics and pricing mechanism of flights. The core logic of `svc-pricing` is largely derived from the pricing model.
+[Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
 
 ## Frameworks
 
 See the Services ICD.
-
-## REST
-
-### Files
-
-TODO
-
-### Authentication
-
-See the Services ICD.
-
-### Endpoints
-
-None. This is an internal service expected to be consumed by other Arrow services.
 
 
 ## gRPC
 
 ### Files
 
-These interfaces are defined in a protocol buffer file, `svc-pricing-grpc.proto`.
+These interfaces are defined in a protocol buffer file, [`svc-pricing-grpc.proto`](../proto/svc-pricing-grpc.proto).
 
 ### Integrated Authentication & Encryption
 
 See Services ICD.
 
+### gRPC Protocol Documentation
+
+#### `ReadyResponse`
+If the service is ready to use.
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `ready` | bool |  `true` if the service is ready, `false` otherwise. |
+
+
+#### `PricingResponse`
+Price for a given flight. 
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `price` | float | Price in USD |
+
+#### `ReadyRequest`
+A ping to a heartbeat service to see if `svc-pricing` is ready to use.
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `arbitrary` | bool  | An arbitrary value |
+
+#### `PricingRequest`
+Get the price for a type of service.
+
+:exclamation: This is still WIP as we continue to refine our pricing model. For testing purposes, rideshare type will return a price that is half of that of cargo; and charter will be twice.
+
+An extra field to be added in the near future is `weight` as the weight of the payload affects power consumption, which would influence the pricing.
+
+Two required fields:
+- `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
+  charter
+- `distance`: the distance of the trip in km
+
 ### gRPC Server Methods ("Services")
 
 gRPC server methods are called "services", unfortunately name clashing with the broader concept of web services.
-
 | Service | Description |
 | ---- | ---- |
-| `IsReady` | Returns a message indicating if this service is ready for requests.<br>Similar to a health check, if a server is not "ready" it could be considered dead by the client making the request.
+| `IsReady` | Returns a message indicating if this service is ready for requests.<br> <br>Similar to a health check, if a server is not "ready" it could be considered dead by the client making the request.<br> <br> Also see [`ReadyRequest`](#readyrequest), [`ReadyResponse`](#readyresponse).
+| `GetPricing` | Returns a float value representing the price for a given flight trip, denominated in USD.<br> <br> Also see [`PricingRequest`](#pricingrequest), [`PricingResponse`](#pricingresponse).|
 
 ### gRPC Client Methods ("Requests")
 
 | Request | Description |
 | ------    | ------- |
-| `FlightQuery` | A message to the svc-scheduler in particular
+| `PricingRequest` | See [`PricingRequest`](#pricingrequest)
+| `ReadyRequest` | See [`ReadyRequest`](#readyrequest) |
