@@ -25,10 +25,10 @@ Document | Description
 --- | ---
 [Pricing Model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo) | Unit economics and pricing mechanism of flights. The core logic of `svc-pricing` is largely derived from the pricing model.
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
-
+[Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md)
 ## Frameworks
 
-See the Services ICD.
+See the [Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md).
 
 
 ## gRPC
@@ -39,7 +39,7 @@ These interfaces are defined in a protocol buffer file, [`svc-pricing-grpc.proto
 
 ### Integrated Authentication & Encryption
 
-See Services ICD.
+See [Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md).
 
 ### gRPC Protocol Documentation
 
