@@ -1,6 +1,6 @@
 //! Implementation of pricing logics based on the ride type.
 
-use crate::grpc::PricingRequest;
+use crate::pricing_grpc::PricingRequest;
 
 /// Get pricing for a given query
 ///
