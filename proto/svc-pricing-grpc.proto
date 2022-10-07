@@ -25,6 +25,7 @@ message ReadyRequest {
 
 // I'm Ready
 message ReadyResponse {
+    // Indicate if the service is ready to accept requests.
     bool ready = 1;
 }
 
@@ -61,8 +62,11 @@ message PricingRequest {
 
     // Service type
     enum ServiceType {
+        // Cargo service that can transport goods.
         CARGO = 0;
+        // Rideshare service that can transport passengers.
         RIDESHARE = 1;
+        // Charter service that can be reserved for a specific trip.
         CHARTER = 2;
     }
 }
