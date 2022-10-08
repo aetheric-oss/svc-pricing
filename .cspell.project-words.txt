@@ -17,3 +17,11 @@ rideshare
 repr
 codegen
 tcort
+ROIC
+microservices
+vertiports
+ridesharing
+Lilium
+Joby
+Zipline
+commoditization
