@@ -21,7 +21,7 @@ However, due to the significant financial and engineering resources required to 
 
 ## Overview
 
-`svc-pricing` provides the ticket price (in USD) for a given trip through the gRPC networking protocol. The pricing model currently supports three use cases: cargo, rideshare, and charter.
+`svc-pricing` provides the ticket price (in USD) for a given trip. The pricing model currently supports three use cases: cargo, rideshare, and charter.
 
 The price supplied and presented to the customers through GUI clients should be the definitive charge to be billed.
 
@@ -47,7 +47,7 @@ Although we are assuming a non-profit business, the pricing of each individual t
 
 The system should accept key inputs like distance, weight, etc. to compute the pricing of a given trip.
 
-The system should accept requests and return responses through gRPC.
+The system should accept requests and return responses.
 
 *Note, the following goals have not been achieved by the current implementation of the pricing system.*
 
