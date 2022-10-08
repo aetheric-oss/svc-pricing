@@ -104,7 +104,7 @@ For example, if a customer wants to ship a 10-kg cargo from San Francisco to San
 
 All else being equal, the customer would naturally pick the Joby option because it is the cheapest. This behavior will incentivize OEMs to innovate in order to compete with other players on price.
 
-The innovation can come from hardware (advanced manufacturing, superior procurement management, economic design, etc), or from algorithm. Some well-funded players may not care about recouping CapEx, so they would develop algorithms to analyze the supply and demand of the market, pricing of other services, etc., to programmatically price their trips.
+The innovation can come from hardware (advanced manufacturing, superior procurement management, economic design, etc), or from algorithm. Some well-funded players may not care about recouping CapEx, so they would develop algorithms that use Arrow's available APIs to analyze the supply and demand of the market, pricing of other services, etc.
 
 #### Pricing as a Service
 Arrow may offer a set of APIs for OEMs to develop in-house algorithms, but it could also be a product offering.
@@ -127,6 +127,7 @@ Key points to discuss:
 * If we go with the vertical integration model, what kind of operations are we capable of running commercially
 * Who and when to showcase our demo
 * Should we seek strategic investors
+* Alternative source of funds from grants and government subsidies to support our operations. Would this be a sustainable strategy? How much do we need to support us to become cash flow positive? Would there be influences by governments on what we do?
 
 
 ## Risks and Potential Issues
