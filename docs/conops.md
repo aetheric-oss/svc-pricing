@@ -115,7 +115,7 @@ We believe this business model creates a win-win situation where it releases the
 
 
 #### Downside
-While the marketplace business model bridges many gaps on the market amount different participants, the platform (Arrow) itself may under-perform as operating a marketplace is difficult and the success is largely a function [network effects](https://online.hbs.edu/blog/post/what-are-network-effects). 
+While the marketplace business model bridges many gaps on the market among different participants, the platform (Arrow) itself may under-perform as operating a marketplace is difficult and the success is largely a function of [network effects](https://online.hbs.edu/blog/post/what-are-network-effects). 
 
 There essentially three parties in a marketplace ecosystem: the platform (Arrow), the service providers (OEMs or other fleet owner-operators), the customers (passengers, corporations, etc.).
 
@@ -132,7 +132,7 @@ Key points to discuss:
 ## Risks and Potential Issues
 ***The underlying pricing model may be incorrectly constructed, thereby over- or under-price trips.***
 
-The pricing logic of `svc-pricing` derives from our [pricing model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo), which was constructed without the assistance and review from external consultants. And currently, the pricing model makes a number of rough estimates on some key inputs like the cost basis of a cargo aircraft. With inaccurate pricing Arrow's business, reputation, results of operations and financial condition can be materially and adversely affected. 
+The pricing logic of `svc-pricing` derives from our [pricing model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo), which is preliminary and will be submitted for review to external consultants. And currently, the pricing model makes a number of rough estimates on some key inputs like the cost basis of a cargo aircraft. With inaccurate pricing Arrow's business, reputation, results of operations and financial condition can be materially and adversely affected. 
 
 ***The pricing service may experience outage.***
 
