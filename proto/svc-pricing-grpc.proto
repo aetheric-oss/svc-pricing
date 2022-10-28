@@ -7,20 +7,9 @@
 syntax = "proto3";
 package grpc;
 
-
-// -------------------------------------------------------------------
-// Heartbeat
-// -------------------------------------------------------------------
-
-// Check if the service is ready to accept requests.
-service IsReady {
-    rpc IsReady (ReadyRequest) returns (ReadyResponse);
-}
-
 // Are you Ready?
 message ReadyRequest {
-    // arbitrary value
-    bool arbitrary = 1;
+    // No arguments
 }
 
 // I'm Ready
@@ -29,14 +18,10 @@ message ReadyResponse {
     bool ready = 1;
 }
 
-
-// -------------------------------------------------------------------
-// Pricing
-// -------------------------------------------------------------------
-
 // Pricing for different services: cargo, rideshare, and charter
 service Pricing {
     rpc GetPricing (PricingRequest) returns (PricingResponse);
+    rpc IsReady (ReadyRequest) returns (ReadyResponse);
 }
 
 // Get the price for a type of service.

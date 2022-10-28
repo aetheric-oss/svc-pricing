@@ -7,6 +7,7 @@ mod engine;
 use tonic::transport::Server;
 
 use crate::engine::get_pricing;
+use pricing_grpc::pricing_server::{Pricing, PricingServer};
 /// Pricing Client Library: Client Functions, Structs
 pub mod pricing_grpc {
     #![allow(unused_qualifications)]
@@ -21,7 +22,7 @@ pub struct ArrowPricing {}
 
 // implementing the service trait for our struct
 #[tonic::async_trait]
-impl pricing_grpc::pricing_server::Pricing for ArrowPricing {
+impl Pricing for ArrowPricing {
     /// Get pricing for a given query.
     /// # Arguments
     /// * `request` - the query object needed to produce
@@ -39,19 +40,43 @@ impl pricing_grpc::pricing_server::Pricing for ArrowPricing {
         Ok(tonic::Response::new(response))
     }
 
-    // TODO Implement IsReady
+    /// Return true if this server is ready to serve others.
+    ///
+    /// # Arguments
+    /// * `_request` - the query object with no arguments
+    /// # Returns
+    /// * `ReadyResponse` - Returns true
+    async fn is_ready(
+        &self,
+        _request: tonic::Request<pricing_grpc::ReadyRequest>,
+    ) -> Result<tonic::Response<pricing_grpc::ReadyResponse>, tonic::Status> {
+        let response = pricing_grpc::ReadyResponse { ready: true };
+        Ok(tonic::Response::new(response))
+    }
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let grpc_port = std::env::var("DOCKER_PORT_GRPC")
+        .unwrap_or_else(|_| "50051".to_string())
+        .parse::<u16>()
+        .unwrap_or(50051);
     // defining address for our service
-    let addr = "[::1]:50051".parse().unwrap();
+    let addr = format!("[::1]:{grpc_port}").parse().unwrap();
     // creating a service
     let pricing = ArrowPricing::default();
-    println!("Server listening on {}", addr);
+    // creating the health check service
+    let (mut health_reporter, health_service) = tonic_health::server::health_reporter();
+
+    health_reporter
+        .set_serving::<PricingServer<ArrowPricing>>()
+        .await;
+
+    println!("gRPC Server Listening at {}", addr);
     // adding our service to our server.
     Server::builder()
-        .add_service(pricing_grpc::pricing_server::PricingServer::new(pricing))
+        .add_service(health_service)
+        .add_service(PricingServer::new(pricing))
         .serve(addr)
         .await?;
     Ok(())
