@@ -1,8 +1,8 @@
 [package]
-description = "Arrow Cargo service GRPC client"
+description = "Arrow Pricing service GRPC client"
 edition     = "2021"                            # Allowed values are 2015, 2018, 2021
 license     = ""
-name        = "svc-cargo-client-grpc"
+name        = "svc-pricing-client-grpc"
 version     = "0.2.0-develop.0"
 # Rust Editions: https://doc.rust-lang.org/edition-guide/index.html
 
