@@ -37,7 +37,7 @@ pub struct PricingRequest {
     ///
     /// required float weight_kg = 3;
     #[prost(float, tag="2")]
-    pub distance: f32,
+    pub distance_km: f32,
 }
 /// Nested message and enum types in `PricingRequest`.
 pub mod pricing_request {

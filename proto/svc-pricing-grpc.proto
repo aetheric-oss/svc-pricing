@@ -37,7 +37,7 @@ message PricingRequest {
     // 2 = charter
     ServiceType service_type = 1;
     // distance in kilometers
-    float distance = 2;
+    float distance_km = 2;
     // weight in kg - Not in use for now
     //
     // conversations are ongoing to determine how weight
