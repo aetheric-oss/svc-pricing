@@ -51,7 +51,7 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR: f32 = 0.3 * CARGO_DEPRECIATI
 /// # Returns
 /// * `f32` - The cost of the flight trip in dollars.
 fn get_cargo_pricing(query: PricingRequest) -> f32 {
-    let distance = query.distance;
+    let distance = query.distance_km;
     let trip_duration = distance / CARGO_CRUISE_SPEED_KM_PER_HR;
     let trip_cruise_cost =
         trip_duration * CARGO_ELECTRICITY_COST_USD_PER_KWH * CARGO_CRUISE_POWER_CONSUMPTION_KW;
@@ -80,7 +80,7 @@ mod tests {
     fn test_get_cargo_pricing() {
         let query = PricingRequest {
             service_type: 0,
-            distance: 160.934,
+            distance_km: 160.934,
         };
         let price = get_cargo_pricing(query);
         assert_eq!((price * 10.0).round() / 10.0, 27.8);

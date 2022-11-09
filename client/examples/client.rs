@@ -35,8 +35,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     let request = tonic::Request::new(PricingRequest {
-        service_type: 0, // 0 for cargo, 1 for rideshare, 2 for charter
-        distance: 100.0, // in km
+        service_type: 0,    // 0 for cargo, 1 for rideshare, 2 for charter
+        distance_km: 100.0, // in km
     });
 
     let response = client.get_pricing(request).await?;
