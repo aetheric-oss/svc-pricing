@@ -1,3 +1,23 @@
+## [Release 0.2.1-develop.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.2.1-develop.0)
+
+### 🐛 Fixes
+
+-  **gRPC:** correct package name (#5) ([`24fc47c`](https://github.com/Arrow-air/svc-pricing/commit/24fc47cf33dbd27dfc08a82fce25c69aa87d4a65))
+-  **grpc:** server startup on arch linux (#7) ([`c31a35f`](https://github.com/Arrow-air/svc-pricing/commit/c31a35fda69baaddb6094c05d4ca2560cc642d07))
+-  **cargo:** add vendored-openssl feature ([`691279d`](https://github.com/Arrow-air/svc-pricing/commit/691279dd11cfb96c7e23f1c07692a667ca7e7a83))
+
+### 🛠 Maintenance
+
+-  **ci:** update changelog ([`20bee95`](https://github.com/Arrow-air/svc-pricing/commit/20bee95ad21a5299379806396425607f3690bdaf))
+-  **ci:** update package version ([`ba4e87e`](https://github.com/Arrow-air/svc-pricing/commit/ba4e87e110467c68e956f4dd9ffd87c7ba4988a4))
+-  **ci:** update package version<br/><br/>[skip ci] ([`5ad6bae`](https://github.com/Arrow-air/svc-pricing/commit/5ad6baefe65ec68717863bd69477618db9357769))
+-  **ci:** dockerfile - provisioned by terraform ([`2c447c2`](https://github.com/Arrow-air/svc-pricing/commit/2c447c24a4eb38483b8f01496b89f8b7d1844912))
+-  **ci:** .make/rust.mk - provisioned by terraform ([`ad34832`](https://github.com/Arrow-air/svc-pricing/commit/ad34832a3a9ed3b8a8f84cdf46f7302b2d0f2f08))
+-  **ci:** .github/workflows/release.yml - provisioned by terraform ([`bceae3a`](https://github.com/Arrow-air/svc-pricing/commit/bceae3a76c95ef9ce3de8159b80c63d3258d7988))
+-  **ci:** update changelog ([`7a04350`](https://github.com/Arrow-air/svc-pricing/commit/7a04350a05e8a8a28c2e89a205008da9a7e32a6b))
+-  **ci:** update package version ([`46ada9f`](https://github.com/Arrow-air/svc-pricing/commit/46ada9fb97bf5466e50a1d546df2111c5c65c73e))
+-  **ci:** update package version<br/><br/>[skip ci] ([`c07a000`](https://github.com/Arrow-air/svc-pricing/commit/c07a0007e74f849706f8489ea9457d919e200900))
+
 ## [Release 0.2.0-develop.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.2.0-develop.1)
 
 ### 🛠 Maintenance
