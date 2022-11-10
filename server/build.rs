@@ -11,7 +11,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Build the Client
     client_config
         .build_server(false)
-        .out_dir("../client/src/")
+        .out_dir("../client-grpc/src/")
         .compile(&["../proto/svc-pricing-grpc.proto"], &["../proto"])?;
 
     // Build the Server
