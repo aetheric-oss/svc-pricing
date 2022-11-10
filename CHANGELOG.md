@@ -32,4 +32,3 @@
 ### 🛠 Maintenance
 
 - add CHANGELOG.md ([`f129a59`](https://github.com/Arrow-air/svc-pricing/commit/f129a597fac509c9ea274d352083cd782b70b84f))
-
