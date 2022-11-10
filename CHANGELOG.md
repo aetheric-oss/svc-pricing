@@ -1,16 +1,3 @@
-## [Release 0.2.1-develop.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.2.1-develop.0)
-
-### 🐛 Fixes
-
--  **gRPC:** correct package name (#5) ([`24fc47c`](https://github.com/Arrow-air/svc-pricing/commit/24fc47cf33dbd27dfc08a82fce25c69aa87d4a65))
--  **grpc:** server startup on arch linux (#7) ([`c31a35f`](https://github.com/Arrow-air/svc-pricing/commit/c31a35fda69baaddb6094c05d4ca2560cc642d07))
-
-### 🛠 Maintenance
-
--  **ci:** update changelog ([`20bee95`](https://github.com/Arrow-air/svc-pricing/commit/20bee95ad21a5299379806396425607f3690bdaf))
--  **ci:** update package version ([`ba4e87e`](https://github.com/Arrow-air/svc-pricing/commit/ba4e87e110467c68e956f4dd9ffd87c7ba4988a4))
--  **ci:** update package version<br/><br/>[skip ci] ([`5ad6bae`](https://github.com/Arrow-air/svc-pricing/commit/5ad6baefe65ec68717863bd69477618db9357769))
-
 ## [Release 0.2.0-develop.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.2.0-develop.1)
 
 ### 🛠 Maintenance
