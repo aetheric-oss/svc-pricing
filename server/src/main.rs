@@ -57,27 +57,31 @@ impl Pricing for ArrowPricing {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // GRPC Server
     let grpc_port = std::env::var("DOCKER_PORT_GRPC")
         .unwrap_or_else(|_| "50051".to_string())
         .parse::<u16>()
         .unwrap_or(50051);
-    // defining address for our service
-    let addr = format!("[::1]:{grpc_port}").parse().unwrap();
+
+    let full_grpc_addr = format!("[::]:{}", grpc_port).parse()?;
+
     // creating a service
     let pricing = ArrowPricing::default();
+
     // creating the health check service
     let (mut health_reporter, health_service) = tonic_health::server::health_reporter();
-
     health_reporter
         .set_serving::<PricingServer<ArrowPricing>>()
         .await;
 
-    println!("gRPC Server Listening at {}", addr);
-    // adding our service to our server.
+    //start server
+    println!("Starting gRPC server at: {}", full_grpc_addr);
     Server::builder()
         .add_service(health_service)
         .add_service(PricingServer::new(pricing))
-        .serve(addr)
+        .serve(full_grpc_addr)
         .await?;
+    println!("gRPC server running at: {}", full_grpc_addr);
+
     Ok(())
 }
