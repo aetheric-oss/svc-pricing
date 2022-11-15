@@ -24,7 +24,7 @@ Document | Description
 [Pricing Model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo) | Unit economics and pricing mechanism of flights. The core logic of `svc-pricing` is largely derived from the pricing model.
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
 [High-Level Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md) | Arrow Services team's top-level ICD.
-[Concept of Operations - `svc-pricing`]() | Concept of Operations for `svc-pricing`.
+[Concept of Operations - `svc-pricing`](conops.md) | Concept of Operations for `svc-pricing`.
 ## Frameworks
 
 See the [High-Level Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md).
