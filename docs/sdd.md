@@ -62,6 +62,13 @@ This module does not require user-side initialization.
 
 The `main` function in [`/server/src/main.rs`](../server/src/main.rs) will simply spin up the server at the provided port.
 
+### Environment Variables
+The only environment variables are the port numbers used to spin up the server.
+
+For the pricing server, `DOCKER_PORT_GRPC` is the port number where the server lives. If not provided, `50051` will be used as a fallback port.
+
+For the client, `HOST_PORT_GRPC` is needed to connect to the pricing server. This env var should be the server's port. If not provided, `50051` will be used as a fallback port. In most cases, one may assume `HOST_PORT_GRPC` to have the same value as `DOCKER_PORT_GRPC`.
+
 ### Control Loop
 
 Does not apply. 
@@ -79,8 +86,6 @@ See [the ICD](./icd.md) for this microservice.
 
 ## Tests
 
-No integration tests available at this stage as the pricing logic is still an on-going effort.
 
 ### Unit Tests
 
-100% coverage.
