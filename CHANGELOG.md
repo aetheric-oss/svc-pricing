@@ -1,3 +1,9 @@
+## [Release 0.2.1-develop.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.2.1-develop.1)
+
+### 📚 Documentation
+
+-  **SDD:** publish Software Design Document (#9) ([`9ff8ae1`](https://github.com/Arrow-air/svc-pricing/commit/9ff8ae19a8af4bb8b00049a23e3241b3e8132fec))
+
 ## [Release 0.2.1-develop.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.2.1-develop.0)
 
 ### 🐛 Fixes
