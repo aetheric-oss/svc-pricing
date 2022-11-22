@@ -1,3 +1,19 @@
+## [Release 0.3.0-develop.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.3.0-develop.0)
+
+### ✨ Features
+
+-  **Logger:** implement loggers for logging and debugging purposes ([`0aa07fe`](https://github.com/Arrow-air/svc-pricing/commit/0aa07fee919514ca8040dcfac8b3ed24f69cad1e))
+
+### 🛠 Maintenance
+
+-  **ci:** .commitlintrc.yml - provisioned by terraform ([`46cacc2`](https://github.com/Arrow-air/svc-pricing/commit/46cacc2f90dd398439a45cf7bc32b20244db8b9b))
+-  **ci:** .make/docker.mk - provisioned by terraform ([`7224864`](https://github.com/Arrow-air/svc-pricing/commit/7224864bed742a3bb36b9bb935babae913f8acd4))
+-  **ci:** makefile - provisioned by terraform ([`dea58e2`](https://github.com/Arrow-air/svc-pricing/commit/dea58e2499df852ac64489834d948e8b200935ac))
+-  **ci:** .make/env.mk - provisioned by terraform ([`ca7d612`](https://github.com/Arrow-air/svc-pricing/commit/ca7d612dc2cdfd4e6161965810f75b45371287cd))
+-  **ci:** .env.base.tftpl - provisioned by terraform ([`f73d95e`](https://github.com/Arrow-air/svc-pricing/commit/f73d95eb4b643b275fb6728f45f342a9b3da472b))
+-  **ci:** .env.base - provisioned by terraform ([`4cc562c`](https://github.com/Arrow-air/svc-pricing/commit/4cc562c47957263f7428a04ba08453a114bff841))
+-  **ci:** .make/env.mk - provisioned by terraform ([`dc2c3b1`](https://github.com/Arrow-air/svc-pricing/commit/dc2c3b120e5f0869e4b940743b688d20250fd4f4))
+
 ## [Release 0.2.1-develop.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.2.1-develop.1)
 
 ### 📚 Documentation
