@@ -1,5 +1,7 @@
 //! Implementation of pricing logics based on the ride type.
 
+use log::{debug, info};
+
 use crate::pricing_grpc::PricingRequest;
 
 /// Get pricing for a given query
@@ -7,6 +9,7 @@ use crate::pricing_grpc::PricingRequest;
 /// # Arguments
 /// * `request` - PricingRequest
 pub fn get_pricing(query: PricingRequest) -> f32 {
+    info!("Getting pricing for service type: {:?}", query.service_type);
     match query.service_type {
         0 => get_cargo_pricing(query),
         1 => get_rideshare_pricing(query),
@@ -51,13 +54,26 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR: f32 = 0.3 * CARGO_DEPRECIATI
 /// # Returns
 /// * `f32` - The cost of the flight trip in dollars.
 fn get_cargo_pricing(query: PricingRequest) -> f32 {
+    debug!("Getting cargo pricing for query: {:?}", query);
     let distance = query.distance_km;
+    debug!("Cargo take off and landing cost: {}", CARGO_TOL_COST_USD);
+    debug!("Distance: {}", distance);
     let trip_duration = distance / CARGO_CRUISE_SPEED_KM_PER_HR;
+    debug!("Trip duration: {}", trip_duration);
     let trip_cruise_cost =
         trip_duration * CARGO_ELECTRICITY_COST_USD_PER_KWH * CARGO_CRUISE_POWER_CONSUMPTION_KW;
+    debug!("Trip cruise cost: {}", trip_cruise_cost);
     let depreciation_cost = trip_duration * CARGO_DEPRECIATION_RATE_USD_PER_HR;
+    debug!("Depreciation cost: {}", depreciation_cost);
     let repair_and_maintenance_cost = trip_duration * CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR;
-    CARGO_TOL_COST_USD + trip_cruise_cost + depreciation_cost + repair_and_maintenance_cost
+    debug!(
+        "Repair and maintenance cost: {}",
+        repair_and_maintenance_cost
+    );
+    let total_cost =
+        CARGO_TOL_COST_USD + trip_cruise_cost + depreciation_cost + repair_and_maintenance_cost;
+    debug!("Total cost: {}", total_cost);
+    total_cost
 }
 
 /// TODO: Pricing for rideshare.
