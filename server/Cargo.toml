@@ -11,6 +11,8 @@ vendored-openssl = ['openssl/vendored']
 
 [dependencies]
 cargo-husky  = "1"
+env_logger   = "0.9.0"
+log          = "0.4.17"
 openssl      = "0.10"
 prost        = "0.11.0"
 prost-types  = "0.11.1"
