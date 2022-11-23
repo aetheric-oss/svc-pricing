@@ -1,3 +1,9 @@
+## [Release 0.3.0-develop.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.3.0-develop.1)
+
+### 🛠 Maintenance
+
+-  **logging:** upgrade to log4rs (#11) ([`945afdb`](https://github.com/Arrow-air/svc-pricing/commit/945afdb61612c045b929f7a51494149f8ed7207a))
+
 ## [Release 0.3.0-develop.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.3.0-develop.0)
 
 ### ✨ Features
