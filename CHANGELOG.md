@@ -1,3 +1,9 @@
+## [Release 0.3.0-develop.2](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.3.0-develop.2)
+
+### 🛠 Maintenance
+
+-  **toml:** remove patch versions from denpendencies (#12) ([`0ca381a`](https://github.com/Arrow-air/svc-pricing/commit/0ca381a6c79d24f6f637c736fba75a1fdf7058c3))
+
 ## [Release 0.3.0-develop.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.3.0-develop.1)
 
 ### 🛠 Maintenance
