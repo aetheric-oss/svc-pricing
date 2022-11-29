@@ -26,12 +26,6 @@ pub struct ArrowPricing {}
 #[tonic::async_trait]
 impl Pricing for ArrowPricing {
     /// Get pricing for a given query.
-    /// # Arguments
-    /// * `request` - the query object needed to produce
-    ///   pricing.
-    /// # Returns
-    /// * `PricingResponse` - containing the cost of the flight trip in
-    ///   dollars.
     async fn get_pricing(
         &self,
         request: tonic::Request<pricing_grpc::PricingRequest>,
@@ -48,11 +42,6 @@ impl Pricing for ArrowPricing {
     }
 
     /// Return true if this server is ready to serve others.
-    ///
-    /// # Arguments
-    /// * `_request` - the query object with no arguments
-    /// # Returns
-    /// * `ReadyResponse` - Returns true
     async fn is_ready(
         &self,
         _request: tonic::Request<pricing_grpc::ReadyRequest>,

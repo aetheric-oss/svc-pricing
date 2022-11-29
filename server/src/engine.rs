@@ -5,9 +5,6 @@ use log::{debug, info};
 use crate::pricing_grpc::PricingRequest;
 
 /// Get pricing for a given query
-///
-/// # Arguments
-/// * `request` - PricingRequest
 pub fn get_pricing(query: PricingRequest) -> f32 {
     info!("Getting pricing for service type: {:?}", query.service_type);
     match query.service_type {
@@ -46,13 +43,6 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR: f32 = 0.3 * CARGO_DEPRECIATI
 /// Pricing is based on distance for now. The unit economics are modeled
 /// after [Project
 /// Apollo](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo).
-///
-/// # Arguments
-/// * `query` - A [`PricingRequest`] struct that contains information
-///   needed to compute the pricing.
-///
-/// # Returns
-/// * `f32` - The cost of the flight trip in dollars.
 fn get_cargo_pricing(query: PricingRequest) -> f32 {
     debug!("Getting cargo pricing for query: {:?}", query);
     let distance = query.distance_km;
