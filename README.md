@@ -7,7 +7,9 @@
 
 ## :telescope: Overview
 
-FIXME
+`svc-pricing` provides the ticket price (in USD) for a given trip. The pricing model currently supports three use cases: cargo, rideshare, and charter.
+
+The price supplied and presented to the customers through GUI clients should be the definitive charge to be billed.
 
 Directory:
 - `src/`: Source Code and Unit Tests
@@ -93,4 +95,4 @@ If you are building a non-end product like a library, include `Cargo.lock` in `.
 
 If you are building an end product like a command line tool, check `Cargo.lock` to the git. 
 
-Read more about it [here](https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html);
+Read more about it [here](https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html).

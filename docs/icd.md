@@ -25,6 +25,8 @@ Document | Description
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
 [High-Level Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md) | Arrow Services team's top-level ICD.
 [Concept of Operations - `svc-pricing`](conops.md) | Concept of Operations for `svc-pricing`.
+[Software Design Document - `svc-pricing`](./sdd.md) | Software Design Document for `svc-pricing`.
+
 ## Frameworks
 
 See the [High-Level Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md).
@@ -76,7 +78,7 @@ An extra field to be added in the near future is `weight` as the weight of the p
 Two required fields:
 - `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
   charter
-- `distance`: the distance of the trip in km
+- `distance_km`: the distance of the trip in km
 
 ### gRPC Server Methods ("Services")
 

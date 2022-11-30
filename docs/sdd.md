@@ -23,10 +23,6 @@ This document details the software implementation of `svc-pricing` (the "pricing
 
 The pricing module is responsible for computing the cost for given flight trips. 
 
-
-
-
-
 *Note: This module is intended to be used by other Arrow micro-services via gRPC.*
 
 *This document is under development as Arrow operates on a pre-revenue and pre-commercial stage. Pricing logics may evolve as per business needs, which may result in architectural/implementation changes to the pricing module.*
@@ -44,7 +40,7 @@ Document | Description
 
 ## Location
 
-This document is located under [`svc-pricing`](https://github.com/Arrow-air/svc-pricing) repository's [`/docs`](https://github.com/Arrow-air/svc-pricing/tree/main/docs) folder.
+This module is to be deployed and consumed in a server-side environment.
 
 ## Module Attributes
 

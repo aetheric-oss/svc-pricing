@@ -17,7 +17,7 @@ Arrow is still at a pre-revenue stage without a definitive business model. This 
 
 However, due to the significant financial and engineering resources required to build out certified, commercial scale vehicles, it is likely that we operate as a marketplace platform like Uber where original equipment manufacturers (OEMs) supply vehicles. Therefore, the pricing mechanism will be dramatically different than what `svc-pricing` implements.
 
- Some preliminary ideas about this business model will be outlined in this document under [Business Model Discussion](#business-model-discussion).
+Some preliminary ideas about this business model will be outlined in this document under [Business Model Discussion](#business-model-discussion).
 
 ## Overview
 
@@ -34,6 +34,7 @@ Document | Description
 [Interface Control Document (ICD) - `svc-pricing`](./icd.md) | Defines the inputs and outputs of this microservice.
 [Pricing Model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo) | Unit economics and pricing mechanism of flights. The core logic of `svc-pricing` is largely derived from the pricing model.
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
+[Software Design Document - `svc-pricing`](./sdd.md) | Software Design Document for `svc-pricing`.
 
 ## Motivation
 
@@ -142,6 +143,7 @@ Our cloud service providers and other services `svc-pricing` depends on may be i
 The unavailability of the pricing service will materially and adversely disrupt the ridesharing network by disabling scheduling of new trips, which may result in an increased number of underutilized aircraft, vertiports, pilots, and staffs. Our customer base may experience churns as a result of unavailable services. Additional costs may be incurred to fix the outage and to resume the network activity.
 
 ## Appendix A: Citations
-TODO
+N/A
+
 ## Appendix B: Acronyms & Glossary
 See the [Arrow Glossary](https://www.arrowair.com/docs/documentation/glossary).

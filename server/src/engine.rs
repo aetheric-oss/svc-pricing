@@ -2,16 +2,29 @@
 
 use log::{debug, info};
 
-use crate::pricing_grpc::PricingRequest;
+use crate::pricing_grpc::{pricing_request::ServiceType, PricingRequest};
 
 /// Get pricing for a given query
 pub fn get_pricing(query: PricingRequest) -> f32 {
     info!("Getting pricing for service type: {:?}", query.service_type);
-    match query.service_type {
-        0 => get_cargo_pricing(query),
-        1 => get_rideshare_pricing(query),
-        2 => get_charter_pricing(query),
-        _ => 0.0,
+
+    match ServiceType::from_i32(query.service_type) {
+        Some(ServiceType::Cargo) => {
+            debug!("Cargo pricing");
+            get_cargo_pricing(query)
+        }
+        Some(ServiceType::Rideshare) => {
+            debug!("Rideshare pricing");
+            get_rideshare_pricing(query)
+        }
+        Some(ServiceType::Charter) => {
+            debug!("Charter pricing");
+            get_charter_pricing(query)
+        }
+        None => {
+            debug!("Error parsing service type; returning 0.0");
+            0.0
+        }
     }
 }
 
