@@ -1,0 +1,63 @@
+// Protocol buffer definitions for the API. See
+// https://developers.google.com/protocol-buffers/
+//
+// The `isReady` service is a required service for all Arrow services.
+// It is used to determine if the service is ready to accept requests.
+
+syntax = "proto3";
+package grpc;
+
+// Are you Ready?
+message ReadyRequest {
+    // No arguments
+}
+
+// I'm Ready
+message ReadyResponse {
+    // Indicate if the service is ready to accept requests.
+    bool ready = 1;
+}
+
+// Pricing for different services: cargo, rideshare, and charter
+service Pricing {
+    rpc GetPricing (PricingRequest) returns (PricingResponse);
+    rpc IsReady (ReadyRequest) returns (ReadyResponse);
+}
+
+// Get the price for a type of service.
+//
+// Two required fields:
+// - `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
+//   charter
+// - `distance`: the distance of the trip in km
+message PricingRequest {
+    // service type
+    // 0 = cargo
+    // 1 = rideshare
+    // 2 = charter
+    ServiceType service_type = 1;
+    // distance in kilometers
+    float distance_km = 2;
+    // weight in kg - Not in use for now
+    //
+    // conversations are ongoing to determine how weight
+    // impacts pricing
+    //
+    // required float weight_kg = 3;
+
+    // Service type
+    enum ServiceType {
+        // Cargo service that can transport goods.
+        CARGO = 0;
+        // Rideshare service that can transport passengers.
+        RIDESHARE = 1;
+        // Charter service that can be reserved for a specific trip.
+        CHARTER = 2;
+    }
+}
+
+// Price for a service
+message PricingResponse {
+    // price in dollars
+    float price = 1;
+}
