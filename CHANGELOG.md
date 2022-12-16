@@ -1,3 +1,15 @@
+## [Release 0.4.1-develop.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.4.1-develop.0)
+
+### 🛠 Maintenance
+
+-  **ci:** .make/env.mk - provisioned by terraform ([`1208b1a`](https://github.com/Arrow-air/svc-pricing/commit/1208b1a3fbb0e4dc0796ca6045a85f3197d28cfb))
+-  **ci:** .github/workflows/release.yml - provisioned by terraform ([`5cda0a6`](https://github.com/Arrow-air/svc-pricing/commit/5cda0a65b8ca92aca4088c280b9b14ffaea887f4))
+-  **ci:** .license - provisioned by terraform ([`f3a289c`](https://github.com/Arrow-air/svc-pricing/commit/f3a289c5b7ac845a182ad68e4a99f3dc98cd4f89))
+-  **ci:** .editorconfig - provisioned by terraform ([`ca53473`](https://github.com/Arrow-air/svc-pricing/commit/ca53473f4a270824abcb14756640359a06236b4d))
+-  **ci:** .env.base - provisioned by terraform ([`95b29b3`](https://github.com/Arrow-air/svc-pricing/commit/95b29b32289109d17ffa64363d61cc356e2bcb9e))
+-  **ci:** .make/base.mk - provisioned by terraform ([`888e021`](https://github.com/Arrow-air/svc-pricing/commit/888e0213364b378da35da4117838f98ceb9be766))
+-  **ci:** .github/workflows/nightly.yml - provisioned by terraform ([`002bfd4`](https://github.com/Arrow-air/svc-pricing/commit/002bfd4ca638c5a8c490b9bb6c2424bd62a3a5bc))
+
 ## [Release 0.4.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.4.0)
 
 ### ✨ Features
