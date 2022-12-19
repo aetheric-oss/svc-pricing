@@ -1,3 +1,14 @@
+## [Release 0.4.1-develop.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.4.1-develop.1)
+
+### 🛠 Maintenance
+
+-  **ci:** license - provisioned by terraform ([`704a1a7`](https://github.com/Arrow-air/svc-pricing/commit/704a1a782aa76254979d6f8b34870d6de352636a))
+-  **ci:** .env.base - provisioned by terraform ([`1b56c37`](https://github.com/Arrow-air/svc-pricing/commit/1b56c3754bc5517b9d9240dc58af5d5f92698e30))
+
+### 📚 Documentation
+
+-  **readme:** add license notice and additional info ([`695313a`](https://github.com/Arrow-air/svc-pricing/commit/695313a748f15c98e0b43ad390b0c1fb75c9960d))
+
 ## [Release 0.4.1-develop.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.4.1-develop.0)
 
 ### 🛠 Maintenance
