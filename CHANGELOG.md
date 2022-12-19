@@ -18,7 +18,7 @@
 -  **init:** initial repository setup ([`fa31537`](https://github.com/Arrow-air/svc-pricing/commit/fa31537e72f06f49c10b9f08efd50aa27cecae20))
 -  **grpc:** add km to `distance` field to improve readability (#6) ([`4bd15ba`](https://github.com/Arrow-air/svc-pricing/commit/4bd15baa1586a0d509aa48913690ad837b933ec2))
 -  **logging:** upgrade to log4rs (#11) ([`87a0f8f`](https://github.com/Arrow-air/svc-pricing/commit/87a0f8f178ffb5e1ab5a2bc00291bf89058251bb))
--  **toml:** remove patch versions from denpendencies (#12) ([`d96b4ee`](https://github.com/Arrow-air/svc-pricing/commit/d96b4eebc9d594f7da8fed21dce495d61741af1d))
+-  **toml:** remove patch versions from dependencies (#12) ([`d96b4ee`](https://github.com/Arrow-air/svc-pricing/commit/d96b4eebc9d594f7da8fed21dce495d61741af1d))
 -  **CHANGELOG:** reset for merging to main ([`5eff38f`](https://github.com/Arrow-air/svc-pricing/commit/5eff38f298cd0e508bee35d74b30690460629211))
 - service Cargo versions for release ([`e2f9848`](https://github.com/Arrow-air/svc-pricing/commit/e2f9848b8b1814a15d74f7b950eef02132aae83b))
 
