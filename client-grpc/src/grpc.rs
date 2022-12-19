@@ -2,15 +2,16 @@
 ///
 /// No arguments
 #[derive(Copy, Eq)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReadyRequest {
-}
+pub struct ReadyRequest {}
 /// I'm Ready
 #[derive(Copy, Eq)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadyResponse {
     /// Indicate if the service is ready to accept requests.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub ready: bool,
 }
 /// Get the price for a type of service.
@@ -20,13 +21,14 @@ pub struct ReadyResponse {
 ///    charter
 /// - `distance`: the distance of the trip in km
 #[derive(Copy)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingRequest {
     /// service type
     /// 0 = cargo
     /// 1 = rideshare
     /// 2 = charter
-    #[prost(enumeration="pricing_request::ServiceType", tag="1")]
+    #[prost(enumeration = "pricing_request::ServiceType", tag = "1")]
     pub service_type: i32,
     /// distance in kilometers
     ///
@@ -36,13 +38,23 @@ pub struct PricingRequest {
     /// impacts pricing
     ///
     /// required float weight_kg = 3;
-    #[prost(float, tag="2")]
+    #[prost(float, tag = "2")]
     pub distance_km: f32,
 }
 /// Nested message and enum types in `PricingRequest`.
 pub mod pricing_request {
     /// Service type
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ServiceType {
         /// Cargo service that can transport goods.
@@ -68,10 +80,11 @@ pub mod pricing_request {
 }
 /// Price for a service
 #[derive(Copy)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingResponse {
     /// price in dollars
-    #[prost(float, tag="1")]
+    #[prost(float, tag = "1")]
     pub price: f32,
 }
 /// Generated client implementations.
