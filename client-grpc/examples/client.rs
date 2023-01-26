@@ -4,7 +4,7 @@
 //! server.
 
 use svc_pricing_client::pricing_grpc::{
-    pricing_client::PricingClient, PricingRequest, ReadyRequest,
+    pricing_client::PricingClient, PricingRequest, PricingRequests, ReadyRequest,
 };
 
 /// Example svc-pricing-client.
@@ -34,12 +34,27 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         eprintln!("\u{2620} Errors");
     }
 
-    let request = tonic::Request::new(PricingRequest {
-        service_type: 0,    // 0 for cargo, 1 for rideshare, 2 for charter
-        distance_km: 100.0, // in km
-    });
+    let query1 = PricingRequest {
+        service_type: 0,
+        weight_kg: 100.0,
+        distance_km: 100.0,
+    };
+    let query2 = PricingRequest {
+        service_type: 0,
+        weight_kg: 100.0,
+        distance_km: 100.0,
+    };
+    let query3 = PricingRequest {
+        service_type: 0,
+        weight_kg: 100.0,
+        distance_km: 100.0,
+    };
+    let pricing_requests = vec![query1, query2, query3];
+    let query = PricingRequests {
+        requests: pricing_requests,
+    };
 
-    let response = client.get_pricing(request).await?;
+    let response = client.get_pricing(query).await?;
 
     println!("RESPONSE={:?}", response.into_inner());
 
