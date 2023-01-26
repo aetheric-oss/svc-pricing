@@ -20,9 +20,16 @@ message ReadyResponse {
 
 // Pricing for different services: cargo, rideshare, and charter
 service Pricing {
-    rpc GetPricing (PricingRequest) returns (PricingResponse);
+    rpc GetPricing (PricingRequests) returns (PricingResponse);
     rpc IsReady (ReadyRequest) returns (ReadyResponse);
 }
+
+// An array of pricing requests.
+message PricingRequests {
+    // An array of pricing requests.
+    repeated PricingRequest requests = 1;
+}
+
 
 // Get the price for a type of service.
 //
@@ -38,12 +45,8 @@ message PricingRequest {
     ServiceType service_type = 1;
     // distance in kilometers
     float distance_km = 2;
-    // weight in kg - Not in use for now
-    //
-    // conversations are ongoing to determine how weight
-    // impacts pricing
-    //
-    // required float weight_kg = 3;
+    // weight in kg
+    float weight_kg = 3;
 
     // Service type
     enum ServiceType {
@@ -54,10 +57,16 @@ message PricingRequest {
         // Charter service that can be reserved for a specific trip.
         CHARTER = 2;
     }
+
 }
 
-// Price for a service
+
+
+// Pricing for a service.
+//
+// It contains an array of prices, one for each requested leg of the
+// trip.
 message PricingResponse {
     // price in dollars
-    float price = 1;
+    repeated float prices = 1;
 }

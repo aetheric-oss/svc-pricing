@@ -28,5 +28,3 @@
 -  **icd:** add Interface Control Document (ICD) Draft ([`3003fd4`](https://github.com/Arrow-air/svc-pricing/commit/3003fd4d1535fbb0069781fd524f6a91646dd085))
 -  **conops:** add Concept of Operations (CONOPS) ([`0a38178`](https://github.com/Arrow-air/svc-pricing/commit/0a3817861ff2874192aab1b30181561cda8e6747))
 -  **sdd:** publish Software Design Document (#9) ([`48a87ad`](https://github.com/Arrow-air/svc-pricing/commit/48a87adaba8592c098c55ca94c213cab6af8acfc))
-
-
