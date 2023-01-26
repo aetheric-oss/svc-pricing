@@ -71,14 +71,13 @@ pub mod pricing_request {
 }
 /// Pricing for a service.
 ///
-/// It is a single float value that represents the summed price of the
-/// requested service.
-#[derive(Copy)]
+/// It contains an array of prices, one for each requested leg of the
+/// trip.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingResponse {
     /// price in dollars
-    #[prost(float, tag="1")]
-    pub price: f32,
+    #[prost(float, repeated, tag="1")]
+    pub prices: ::prost::alloc::vec::Vec<f32>,
 }
 /// Generated server implementations.
 pub mod pricing_server {
