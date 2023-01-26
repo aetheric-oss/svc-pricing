@@ -28,17 +28,22 @@ impl Pricing for ArrowPricing {
     /// Get pricing for a given query.
     async fn get_pricing(
         &self,
-        request: tonic::Request<pricing_grpc::PricingRequest>,
+        request: tonic::Request<pricing_grpc::PricingRequests>,
     ) -> Result<tonic::Response<pricing_grpc::PricingResponse>, tonic::Status> {
-        grpc_info!("Received request: {:?}", request);
         let query = request.into_inner();
-        grpc_debug!("Getting pricing for query: {:?}", query);
-        let price = get_pricing(query);
-        grpc_debug!("Pricing computed: {}", price);
-        let response = pricing_grpc::PricingResponse { price };
-        grpc_debug!("Returning response: {:?}", response);
-        grpc_info!("Successfully computed pricing; returning response");
-        Ok(tonic::Response::new(response))
+        info!("Received pricing request");
+        let prices = get_pricing(query);
+        match prices {
+            Ok(prices) => {
+                let total_price = prices.iter().fold(0.0, |acc, x| acc + x);
+                let response = pricing_grpc::PricingResponse { price: total_price };
+                Ok(tonic::Response::new(response))
+            }
+            Err(e) => {
+                let error = tonic::Status::internal(format!("Error getting pricing: {}", e));
+                Err(error)
+            }
+        }
     }
 
     /// Return true if this server is ready to serve others.
