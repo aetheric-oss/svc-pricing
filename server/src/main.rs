@@ -35,8 +35,7 @@ impl Pricing for ArrowPricing {
         let prices = get_pricing(query);
         match prices {
             Ok(prices) => {
-                let total_price = prices.iter().fold(0.0, |acc, x| acc + x);
-                let response = pricing_grpc::PricingResponse { price: total_price };
+                let response = pricing_grpc::PricingResponse { prices };
                 Ok(tonic::Response::new(response))
             }
             Err(e) => {

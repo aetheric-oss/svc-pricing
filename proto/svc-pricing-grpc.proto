@@ -64,9 +64,9 @@ message PricingRequest {
 
 // Pricing for a service.
 //
-// It is a single float value that represents the summed price of the
-// requested service.
+// It contains an array of prices, one for each requested leg of the
+// trip.
 message PricingResponse {
     // price in dollars
-    float price = 1;
+    repeated float prices = 1;
 }
