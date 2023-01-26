@@ -13,6 +13,13 @@ pub struct ReadyResponse {
     #[prost(bool, tag="1")]
     pub ready: bool,
 }
+/// An array of pricing requests.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PricingRequests {
+    /// An array of pricing requests.
+    #[prost(message, repeated, tag="1")]
+    pub requests: ::prost::alloc::vec::Vec<PricingRequest>,
+}
 /// Get the price for a type of service.
 ///
 /// Two required fields:
@@ -29,15 +36,11 @@ pub struct PricingRequest {
     #[prost(enumeration="pricing_request::ServiceType", tag="1")]
     pub service_type: i32,
     /// distance in kilometers
-    ///
-    /// weight in kg - Not in use for now
-    ///
-    /// conversations are ongoing to determine how weight
-    /// impacts pricing
-    ///
-    /// required float weight_kg = 3;
     #[prost(float, tag="2")]
     pub distance_km: f32,
+    /// weight in kg
+    #[prost(float, tag="3")]
+    pub weight_kg: f32,
 }
 /// Nested message and enum types in `PricingRequest`.
 pub mod pricing_request {
@@ -66,7 +69,10 @@ pub mod pricing_request {
         }
     }
 }
-/// Price for a service
+/// Pricing for a service.
+///
+/// It is a single float value that represents the summed price of the
+/// requested service.
 #[derive(Copy)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingResponse {
@@ -83,7 +89,7 @@ pub mod pricing_server {
     pub trait Pricing: Send + Sync + 'static {
         async fn get_pricing(
             &self,
-            request: tonic::Request<super::PricingRequest>,
+            request: tonic::Request<super::PricingRequests>,
         ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status>;
         async fn is_ready(
             &self,
@@ -153,7 +159,7 @@ pub mod pricing_server {
                 "/grpc.Pricing/GetPricing" => {
                     #[allow(non_camel_case_types)]
                     struct GetPricingSvc<T: Pricing>(pub Arc<T>);
-                    impl<T: Pricing> tonic::server::UnaryService<super::PricingRequest>
+                    impl<T: Pricing> tonic::server::UnaryService<super::PricingRequests>
                     for GetPricingSvc<T> {
                         type Response = super::PricingResponse;
                         type Future = BoxFuture<
@@ -162,7 +168,7 @@ pub mod pricing_server {
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::PricingRequest>,
+                            request: tonic::Request<super::PricingRequests>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).get_pricing(request).await };

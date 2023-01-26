@@ -13,6 +13,13 @@ pub struct ReadyResponse {
     #[prost(bool, tag="1")]
     pub ready: bool,
 }
+/// An array of pricing requests.
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PricingRequests {
+    /// An array of pricing requests.
+    #[prost(message, repeated, tag="1")]
+    pub requests: ::prost::alloc::vec::Vec<PricingRequest>,
+}
 /// Get the price for a type of service.
 ///
 /// Two required fields:
@@ -29,15 +36,11 @@ pub struct PricingRequest {
     #[prost(enumeration="pricing_request::ServiceType", tag="1")]
     pub service_type: i32,
     /// distance in kilometers
-    ///
-    /// weight in kg - Not in use for now
-    ///
-    /// conversations are ongoing to determine how weight
-    /// impacts pricing
-    ///
-    /// required float weight_kg = 3;
     #[prost(float, tag="2")]
     pub distance_km: f32,
+    /// weight in kg
+    #[prost(float, tag="3")]
+    pub weight_kg: f32,
 }
 /// Nested message and enum types in `PricingRequest`.
 pub mod pricing_request {
@@ -66,7 +69,10 @@ pub mod pricing_request {
         }
     }
 }
-/// Price for a service
+/// Pricing for a service.
+///
+/// It is a single float value that represents the summed price of the
+/// requested service.
 #[derive(Copy)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingResponse {
@@ -146,7 +152,7 @@ pub mod pricing_client {
         }
         pub async fn get_pricing(
             &mut self,
-            request: impl tonic::IntoRequest<super::PricingRequest>,
+            request: impl tonic::IntoRequest<super::PricingRequests>,
         ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status> {
             self.inner
                 .ready()
