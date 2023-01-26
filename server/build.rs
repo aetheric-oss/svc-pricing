@@ -5,8 +5,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let server_config = tonic_build::configure()
         .type_attribute("ReadyRequest", "#[derive(Copy, Eq)]")
         .type_attribute("ReadyResponse", "#[derive(Copy, Eq)]")
-        .type_attribute("PricingRequest", "#[derive(Copy)]")
-        .type_attribute("PricingResponse", "#[derive(Copy)]");
+        .type_attribute("PricingRequest", "#[derive(Copy)]");
+    // .type_attribute("PricingResponse", "#[derive(Copy)]");
     let client_config = server_config.clone();
     // Build the Client
     client_config
