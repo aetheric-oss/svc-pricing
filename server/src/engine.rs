@@ -166,13 +166,41 @@ mod tests {
 
     #[test]
     fn test_get_cargo_pricing() {
-        let query = PricingRequest {
-            service_type: ServiceType::Cargo as i32,
-            weight_kg: 100.0,
-            distance_km: 100.0,
+        let query = PricingRequests {
+            requests: vec![PricingRequest {
+                service_type: ServiceType::Cargo as i32,
+                weight_kg: 100.0,
+                distance_km: 100.0,
+            }],
         };
-        let price = get_cargo_pricing(query);
-        assert_eq!(price, 18.353542);
+        let prices = get_pricing(query).unwrap();
+        assert_eq!(prices[0], 18.353542);
+    }
+
+    #[test]
+    fn test_get_rideshare_pricing() {
+        let query = PricingRequests {
+            requests: vec![PricingRequest {
+                service_type: ServiceType::Rideshare as i32,
+                weight_kg: 100.0,
+                distance_km: 100.0,
+            }],
+        };
+        let prices = get_pricing(query).unwrap();
+        assert_eq!(prices[0], 9.176771);
+    }
+
+    #[test]
+    fn test_get_charter_pricing() {
+        let query = PricingRequests {
+            requests: vec![PricingRequest {
+                service_type: ServiceType::Charter as i32,
+                weight_kg: 100.0,
+                distance_km: 100.0,
+            }],
+        };
+        let prices = get_pricing(query).unwrap();
+        assert_eq!(prices[0], 36.707085);
     }
 
     #[test]
@@ -262,5 +290,12 @@ mod tests {
             requests: vec![query],
         });
         assert_eq!(prices, Err(PricingError::NegativeDistance));
+    }
+
+    #[test]
+    fn test_pricing_request_empty_requests() {
+        let empty_query = PricingRequests { requests: vec![] };
+        let prices = get_pricing(empty_query);
+        assert_eq!(prices, Err(PricingError::NoRequests));
     }
 }
