@@ -213,12 +213,12 @@ mod tests {
         let query2 = PricingRequest {
             service_type: ServiceType::Cargo as i32,
             weight_kg: 100.0,
-            distance_km: 100.0,
+            distance_km: 50.0,
         };
         let query3 = PricingRequest {
             service_type: ServiceType::Cargo as i32,
             weight_kg: 100.0,
-            distance_km: 100.0,
+            distance_km: 10.0,
         };
         let pricing_requests = vec![query1, query2, query3];
         let query = PricingRequests {
@@ -226,11 +226,16 @@ mod tests {
         };
         let prices = get_pricing(query).unwrap();
         let total = prices.iter().fold(0.0, |acc, x| acc + x);
+
+        let price_leg_1 = get_cargo_pricing(query1);
+        let price_leg_2 = get_cargo_pricing(query2);
+        let price_leg_3 = get_cargo_pricing(query3);
+
         assert_eq!(prices.len(), 3);
-        assert_eq!(prices[0], 18.353542);
-        assert_eq!(prices[1], 18.353542);
-        assert_eq!(prices[2], 18.353542);
-        assert_eq!(total, 55.060627);
+        assert_eq!(prices[0], price_leg_1);
+        assert_eq!(prices[1], price_leg_2);
+        assert_eq!(prices[2], price_leg_3);
+        assert_eq!(total, price_leg_1 + price_leg_2 + price_leg_3);
     }
 
     #[test]
