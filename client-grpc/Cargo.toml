@@ -6,7 +6,7 @@ keywords    = ["vtol", "client", "pricing"]                                # max
 license     = "BUSL-1.1"
 name        = "svc-pricing-client-grpc"
 repository  = "https://github.com/Arrow-air/svc-pricing"
-version     = "0.4.0"
+version     = "0.4.1-develop.7"
 
 categories = [
   "aerospace::drones",
