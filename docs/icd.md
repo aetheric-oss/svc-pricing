@@ -26,6 +26,7 @@ Document | Description
 [High-Level Services ICD](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md) | Arrow Services team's top-level ICD.
 [Concept of Operations - `svc-pricing`](conops.md) | Concept of Operations for `svc-pricing`.
 [Software Design Document - `svc-pricing`](./sdd.md) | Software Design Document for `svc-pricing`.
+[Requirements - `svc-pricing`](https://nocodb.arrowair.com/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements for `svc-pricing`.
 
 ## Frameworks
 

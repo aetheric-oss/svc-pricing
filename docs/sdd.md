@@ -37,6 +37,7 @@ Document | Description
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
 [Concept of Operations - `svc-pricing`](./conops.md) | Concept of Operations for `svc-pricing`.
 [Interface Control Document - `svc-pricing`](./icd.md) | Interface Control Document for `svc-pricing`.
+[Requirements - `svc-pricing`](https://nocodb.arrowair.com/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements for `svc-pricing`.
 
 ## Location
 

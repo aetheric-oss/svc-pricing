@@ -2,22 +2,24 @@
 ///
 /// No arguments
 #[derive(Copy, Eq)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReadyRequest {
-}
+pub struct ReadyRequest {}
 /// I'm Ready
 #[derive(Copy, Eq)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadyResponse {
     /// Indicate if the service is ready to accept requests.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub ready: bool,
 }
 /// An array of pricing requests.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingRequests {
     /// An array of pricing requests.
-    #[prost(message, repeated, tag="1")]
+    #[prost(message, repeated, tag = "1")]
     pub requests: ::prost::alloc::vec::Vec<PricingRequest>,
 }
 /// Get the price for a type of service.
@@ -27,25 +29,36 @@ pub struct PricingRequests {
 ///    charter
 /// - `distance`: the distance of the trip in km
 #[derive(Copy)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingRequest {
     /// service type
     /// 0 = cargo
     /// 1 = rideshare
     /// 2 = charter
-    #[prost(enumeration="pricing_request::ServiceType", tag="1")]
+    #[prost(enumeration = "pricing_request::ServiceType", tag = "1")]
     pub service_type: i32,
     /// distance in kilometers
-    #[prost(float, tag="2")]
+    #[prost(float, tag = "2")]
     pub distance_km: f32,
     /// weight in kg
-    #[prost(float, tag="3")]
+    #[prost(float, tag = "3")]
     pub weight_kg: f32,
 }
 /// Nested message and enum types in `PricingRequest`.
 pub mod pricing_request {
     /// Service type
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ServiceType {
         /// Cargo service that can transport goods.
@@ -67,16 +80,26 @@ pub mod pricing_request {
                 ServiceType::Charter => "CHARTER",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CARGO" => Some(Self::Cargo),
+                "RIDESHARE" => Some(Self::Rideshare),
+                "CHARTER" => Some(Self::Charter),
+                _ => None,
+            }
+        }
     }
 }
 /// Pricing for a service.
 ///
 /// It contains an array of prices, one for each requested leg of the
 /// trip.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingResponse {
     /// price in dollars
-    #[prost(float, repeated, tag="1")]
+    #[prost(float, repeated, tag = "1")]
     pub prices: ::prost::alloc::vec::Vec<f32>,
 }
 /// Generated client implementations.
