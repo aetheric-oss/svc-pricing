@@ -59,7 +59,7 @@ Price for a given flight.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| `price` | float | Price in USD |
+| `prices` | [float] |An array of prices, one for each requested leg of the trip |
 
 #### `ReadyRequest`
 A ping to a heartbeat service to see if `svc-pricing` is ready to use.

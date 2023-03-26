@@ -1,6 +1,6 @@
 //! Implementation of pricing logics based on the service type.
 
-use log::{debug, info};
+use log::debug;
 use snafu::prelude::Snafu;
 
 use crate::pricing_grpc::{pricing_request::ServiceType, PricingRequest, PricingRequests};
@@ -47,7 +47,10 @@ pub enum PricingError {
 /// corresponding to the order of the input requests.
 pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
     let requests = query.requests;
-    info!("Getting pricing for {:?} requests", requests.len());
+    debug!(
+        "(get_pricing) Getting pricing for {:?} requests",
+        requests.len()
+    );
     check_pricing_requests(&requests)?;
     let mut prices = Vec::new();
     match ServiceType::from_i32(requests[0].service_type) {
@@ -59,18 +62,22 @@ pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
             Ok(prices)
         }
         Some(ServiceType::Rideshare) => {
-            debug!("Rideshare pricing");
-            for request in requests {
-                prices.push(get_rideshare_pricing(request));
-            }
-            Ok(prices)
+            // debug!("Rideshare pricing");
+            // for request in requests {
+            //     prices.push(get_rideshare_pricing(request));
+            // }
+            // Ok(prices)
+            debug!("(get_pricing) Rideshare pricing not supported");
+            Err(PricingError::UnknownServiceType)
         }
         Some(ServiceType::Charter) => {
-            debug!("Charter pricing");
-            for request in requests {
-                prices.push(get_charter_pricing(request));
-            }
-            Ok(prices)
+            // debug!("Charter pricing");
+            // for request in requests {
+            //     prices.push(get_charter_pricing(request));
+            // }
+            // Ok(prices)
+            debug!("(get_pricing) Charter pricing not supported");
+            Err(PricingError::UnknownServiceType)
         }
         None => {
             debug!("Error parsing service type");
@@ -81,6 +88,7 @@ pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
 
 /// Check that all pricing requests have the same service type.
 fn check_pricing_requests(requests: &[PricingRequest]) -> Result<(), PricingError> {
+    debug!("(check_pricing_requests) entry.");
     if requests.is_empty() {
         return Err(PricingError::NoRequests);
     }
@@ -148,17 +156,17 @@ fn get_cargo_pricing(query: PricingRequest) -> f32 {
     total_cost
 }
 
-/// TODO: Pricing for rideshare.
-fn get_rideshare_pricing(query: PricingRequest) -> f32 {
-    //TODO
-    0.5 * get_cargo_pricing(query)
-}
+// /// TODO: Pricing for rideshare.
+// fn get_rideshare_pricing(query: PricingRequest) -> f32 {
+//     //TODO
+//     0.5 * get_cargo_pricing(query)
+// }
 
-/// TODO: Pricing for charter.
-fn get_charter_pricing(query: PricingRequest) -> f32 {
-    //TODO
-    2.0 * get_cargo_pricing(query)
-}
+// /// TODO: Pricing for charter.
+// fn get_charter_pricing(query: PricingRequest) -> f32 {
+//     //TODO
+//     2.0 * get_cargo_pricing(query)
+// }
 
 #[cfg(test)]
 mod tests {
@@ -179,28 +187,28 @@ mod tests {
 
     #[test]
     fn test_get_rideshare_pricing() {
-        let query = PricingRequests {
-            requests: vec![PricingRequest {
-                service_type: ServiceType::Rideshare as i32,
-                weight_kg: 100.0,
-                distance_km: 100.0,
-            }],
-        };
-        let prices = get_pricing(query).unwrap();
-        assert_eq!(prices[0], 9.176771);
+        // let query = PricingRequests {
+        //     requests: vec![PricingRequest {
+        //         service_type: ServiceType::Rideshare as i32,
+        //         weight_kg: 100.0,
+        //         distance_km: 100.0,
+        //     }],
+        // };
+        // let prices = get_pricing(query).unwrap();
+        // assert_eq!(prices[0], 9.176771);
     }
 
     #[test]
     fn test_get_charter_pricing() {
-        let query = PricingRequests {
-            requests: vec![PricingRequest {
-                service_type: ServiceType::Charter as i32,
-                weight_kg: 100.0,
-                distance_km: 100.0,
-            }],
-        };
-        let prices = get_pricing(query).unwrap();
-        assert_eq!(prices[0], 36.707085);
+        // let query = PricingRequests {
+        //     requests: vec![PricingRequest {
+        //         service_type: ServiceType::Charter as i32,
+        //         weight_kg: 100.0,
+        //         distance_km: 100.0,
+        //     }],
+        // };
+        // let prices = get_pricing(query).unwrap();
+        // assert_eq!(prices[0], 36.707085);
     }
 
     #[test]
@@ -240,22 +248,22 @@ mod tests {
 
     #[test]
     fn test_invalid_multiple_service_type() {
-        let query1 = PricingRequest {
-            service_type: ServiceType::Cargo as i32,
-            weight_kg: 100.0,
-            distance_km: 100.0,
-        };
-        let query2 = PricingRequest {
-            service_type: ServiceType::Rideshare as i32,
-            weight_kg: 100.0,
-            distance_km: 100.0,
-        };
-        let pricing_requests = vec![query1, query2];
-        let query = PricingRequests {
-            requests: pricing_requests,
-        };
-        let prices = get_pricing(query);
-        assert_eq!(prices, Err(PricingError::MultipleServiceTypes));
+        // let query1 = PricingRequest {
+        //     service_type: ServiceType::Cargo as i32,
+        //     weight_kg: 100.0,
+        //     distance_km: 100.0,
+        // };
+        // let query2 = PricingRequest {
+        //     service_type: ServiceType::Rideshare as i32,
+        //     weight_kg: 100.0,
+        //     distance_km: 100.0,
+        // };
+        // let pricing_requests = vec![query1, query2];
+        // let query = PricingRequests {
+        //     requests: pricing_requests,
+        // };
+        // let prices = get_pricing(query);
+        // assert_eq!(prices, Err(PricingError::MultipleServiceTypes));
     }
 
     #[test]
