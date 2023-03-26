@@ -2,16 +2,25 @@
 ///
 /// No arguments
 #[derive(Copy, Eq)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ReadyRequest {
-}
+pub struct ReadyRequest {}
 /// I'm Ready
 #[derive(Copy, Eq)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadyResponse {
     /// Indicate if the service is ready to accept requests.
-    #[prost(bool, tag="1")]
+    #[prost(bool, tag = "1")]
     pub ready: bool,
+}
+/// An array of pricing requests.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct PricingRequests {
+    /// An array of pricing requests.
+    #[prost(message, repeated, tag = "1")]
+    pub requests: ::prost::alloc::vec::Vec<PricingRequest>,
 }
 /// Get the price for a type of service.
 ///
@@ -20,29 +29,36 @@ pub struct ReadyResponse {
 ///    charter
 /// - `distance`: the distance of the trip in km
 #[derive(Copy)]
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingRequest {
     /// service type
     /// 0 = cargo
     /// 1 = rideshare
     /// 2 = charter
-    #[prost(enumeration="pricing_request::ServiceType", tag="1")]
+    #[prost(enumeration = "pricing_request::ServiceType", tag = "1")]
     pub service_type: i32,
     /// distance in kilometers
-    ///
-    /// weight in kg - Not in use for now
-    ///
-    /// conversations are ongoing to determine how weight
-    /// impacts pricing
-    ///
-    /// required float weight_kg = 3;
-    #[prost(float, tag="2")]
+    #[prost(float, tag = "2")]
     pub distance_km: f32,
+    /// weight in kg
+    #[prost(float, tag = "3")]
+    pub weight_kg: f32,
 }
 /// Nested message and enum types in `PricingRequest`.
 pub mod pricing_request {
     /// Service type
-    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
     #[repr(i32)]
     pub enum ServiceType {
         /// Cargo service that can transport goods.
@@ -64,26 +80,38 @@ pub mod pricing_request {
                 ServiceType::Charter => "CHARTER",
             }
         }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "CARGO" => Some(Self::Cargo),
+                "RIDESHARE" => Some(Self::Rideshare),
+                "CHARTER" => Some(Self::Charter),
+                _ => None,
+            }
+        }
     }
 }
-/// Price for a service
-#[derive(Copy)]
+/// Pricing for a service.
+///
+/// It contains an array of prices, one for each requested leg of the
+/// trip.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct PricingResponse {
     /// price in dollars
-    #[prost(float, tag="1")]
-    pub price: f32,
+    #[prost(float, repeated, tag = "1")]
+    pub prices: ::prost::alloc::vec::Vec<f32>,
 }
 /// Generated server implementations.
 pub mod pricing_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    ///Generated trait containing gRPC methods that should be implemented for use with PricingServer.
+    /// Generated trait containing gRPC methods that should be implemented for use with PricingServer.
     #[async_trait]
     pub trait Pricing: Send + Sync + 'static {
         async fn get_pricing(
             &self,
-            request: tonic::Request<super::PricingRequest>,
+            request: tonic::Request<super::PricingRequests>,
         ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status>;
         async fn is_ready(
             &self,
@@ -153,7 +181,7 @@ pub mod pricing_server {
                 "/grpc.Pricing/GetPricing" => {
                     #[allow(non_camel_case_types)]
                     struct GetPricingSvc<T: Pricing>(pub Arc<T>);
-                    impl<T: Pricing> tonic::server::UnaryService<super::PricingRequest>
+                    impl<T: Pricing> tonic::server::UnaryService<super::PricingRequests>
                     for GetPricingSvc<T> {
                         type Response = super::PricingResponse;
                         type Future = BoxFuture<
@@ -162,7 +190,7 @@ pub mod pricing_server {
                         >;
                         fn call(
                             &mut self,
-                            request: tonic::Request<super::PricingRequest>,
+                            request: tonic::Request<super::PricingRequests>,
                         ) -> Self::Future {
                             let inner = self.0.clone();
                             let fut = async move { (*inner).get_pricing(request).await };

@@ -1,7 +1,21 @@
-//! Pricing server.
+//! <center>
+//! <img src="https://github.com/Arrow-air/tf-github/raw/main/src/templates/doc-banner-services.png" style="height:250px" />
+//! </center>
+//! <div align="center">
+//!     <a href="https://github.com/Arrow-air/svc-pricing/releases">
+//!         <img src="https://img.shields.io/github/v/release/Arrow-air/svc-pricing?include_prereleases" alt="GitHub release (latest by date including pre-releases)">
+//!     </a>
+//!     <a href="https://github.com/Arrow-air/svc-pricing/tree/main">
+//!         <img src="https://github.com/arrow-air/svc-pricing/actions/workflows/rust_ci.yml/badge.svg?branch=main" alt="Rust Checks">
+//!     </a>
+//!     <a href="https://discord.com/invite/arrow">
+//!         <img src="https://img.shields.io/discord/853833144037277726?style=plastic" alt="Arrow DAO Discord">
+//!     </a>
+//!     <br><br>
+//! </div>
 //!
-//! This is the entry point for the pricing server that computes the
-//! cost of a flight trip.
+//! svc-pricing
+//! Computes the cost of a flight trip.
 #[macro_use]
 mod loggers;
 
@@ -26,22 +40,28 @@ pub struct ArrowPricing {}
 #[tonic::async_trait]
 impl Pricing for ArrowPricing {
     /// Get pricing for a given query.
+    #[cfg(not(tarpaulin_include))]
     async fn get_pricing(
         &self,
-        request: tonic::Request<pricing_grpc::PricingRequest>,
+        request: tonic::Request<pricing_grpc::PricingRequests>,
     ) -> Result<tonic::Response<pricing_grpc::PricingResponse>, tonic::Status> {
-        grpc_info!("Received request: {:?}", request);
         let query = request.into_inner();
-        grpc_debug!("Getting pricing for query: {:?}", query);
-        let price = get_pricing(query);
-        grpc_debug!("Pricing computed: {}", price);
-        let response = pricing_grpc::PricingResponse { price };
-        grpc_debug!("Returning response: {:?}", response);
-        grpc_info!("Successfully computed pricing; returning response");
-        Ok(tonic::Response::new(response))
+        info!("Received pricing request");
+        let prices = get_pricing(query);
+        match prices {
+            Ok(prices) => {
+                let response = pricing_grpc::PricingResponse { prices };
+                Ok(tonic::Response::new(response))
+            }
+            Err(e) => {
+                let error = tonic::Status::internal(format!("Error getting pricing: {}", e));
+                Err(error)
+            }
+        }
     }
 
     /// Return true if this server is ready to serve others.
+    #[cfg(not(tarpaulin_include))]
     async fn is_ready(
         &self,
         _request: tonic::Request<pricing_grpc::ReadyRequest>,
@@ -50,7 +70,7 @@ impl Pricing for ArrowPricing {
         Ok(tonic::Response::new(response))
     }
 }
-
+#[cfg(not(tarpaulin_include))]
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     {
