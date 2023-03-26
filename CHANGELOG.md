@@ -1,3 +1,31 @@
+## [Release 0.5.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.5.0)
+
+### ✨ Features
+
+- enhance test coverage to 100% ([`5cecee6`](https://github.com/Arrow-air/svc-pricing/commit/5cecee6d41187c937a4629438811b42b0a859bec))
+
+### 🐛 Fixes
+
+- address review comments ([`17d9bf3`](https://github.com/Arrow-air/svc-pricing/commit/17d9bf3b229051e65e10107c1e7d5756c5de34e0))
+
+### 🔥 Refactorings
+
+-  **pricing:** support pricing for multi-leg trips ([`980b996`](https://github.com/Arrow-air/svc-pricing/commit/980b9969b8ca39e03d9cdf74c49549738995863b))
+-  **pricing:** support returning an array of prices for multi-leg trips ([`22086a4`](https://github.com/Arrow-air/svc-pricing/commit/22086a4e0957fc1999c4ba4f4dda76cfb190a7e6))
+
+### 🛠 Maintenance
+
+- terraform provisioned file changes ([`81c8d0e`](https://github.com/Arrow-air/svc-pricing/commit/81c8d0e9ebae53efcfe2fbeaf467fd8c91146955))
+- clean up for r2 review ([`d4a66ed`](https://github.com/Arrow-air/svc-pricing/commit/d4a66ed012b1a015b69ccf8776f875c19f274306))
+
+### ✅ Tests
+
+- ensures the order of returned prices ([`b18b6f6`](https://github.com/Arrow-air/svc-pricing/commit/b18b6f64d9ba9c499872caeecb8689be2143034b))
+
+### 📚 Documentation
+
+-  **readme:** add license notice and additional info ([`f653ff7`](https://github.com/Arrow-air/svc-pricing/commit/f653ff7e547201ea38dc0ad7858366ea2377b28b))
+
 ## [Release 0.4.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.4.0)
 
 ### ✨ Features
