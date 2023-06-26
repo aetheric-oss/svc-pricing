@@ -3,7 +3,7 @@
 use log::debug;
 use snafu::prelude::Snafu;
 
-use crate::pricing_grpc::{pricing_request::ServiceType, PricingRequest, PricingRequests};
+use crate::grpc::server::{PricingRequest, PricingRequests, ServiceType};
 
 /// Errors that can occur when getting pricing.
 #[derive(Snafu, Copy, Clone, Debug, PartialEq)]
