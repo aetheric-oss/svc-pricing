@@ -1,13 +1,9 @@
-![Arrow Banner](https://github.com/Arrow-air/.github/raw/main/profile/assets/arrow_v2_twitter-banner_neu.png)
+![Arrow Banner](https://github.com/Arrow-air/tf-github/raw/main/src/templates/doc-banner-services.png)
 
 # `svc-pricing`
-![GitHub stable release (latest by
-date)](https://img.shields.io/github/v/release/Arrow-air/svc-pricing?sort=semver&color=green)
-![GitHub release (latest by date including
-pre-releases)](https://img.shields.io/github/v/release/Arrow-air/svc-pricing?include_prereleases)
-![Sanity Checks](https://github.com/arrow-air/svc-pricing/actions/workflows/sanity_checks.yml/badge.svg?branch=main)
-![Rust Checks](https://github.com/arrow-air/svc-pricing/actions/workflows/rust_ci.yml/badge.svg?branch=main)
-![Python PEP8](https://github.com/arrow-air/svc-pricing/actions/workflows/python_ci.yml/badge.svg?branch=main)
+
+![GitHub stable release (latest by date)](https://img.shields.io/github/v/release/Arrow-air/svc-pricing?sort=semver&color=green) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Arrow-air/svc-pricing?include_prereleases) [![Coverage Status](https://coveralls.io/repos/github/Arrow-air/svc-pricing/badge.svg?branch=develop)](https://coveralls.io/github/Arrow-air/svc-pricing)
+![Sanity Checks](https://github.com/arrow-air/svc-pricing/actions/workflows/sanity_checks.yml/badge.svg?branch=develop) ![Python PEP8](https://github.com/arrow-air/svc-pricing/actions/workflows/python_ci.yml/badge.svg?branch=develop) ![Rust Checks](https://github.com/arrow-air/svc-pricing/actions/workflows/rust_ci.yml/badge.svg?branch=develop) 
 ![Arrow DAO Discord](https://img.shields.io/discord/853833144037277726?style=plastic)
 
 ## :telescope: Overview

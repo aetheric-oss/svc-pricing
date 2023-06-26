@@ -1,43 +1,38 @@
+![Arrow Banner](https://github.com/Arrow-air/tf-github/raw/main/src/templates/doc-banner-services.png)
+
 # Concept of Operations - `svc-pricing`
-
-<center>
-
-<img src="https://github.com/Arrow-air/tf-github/raw/main/src/templates/doc-banner-services.png" style="height:250px" />
-
-</center>
-
-Attribute | Description
---- | ---
-Maintainer | [@Arrow-air/services](https://github.com/orgs/Arrow-air/teams)
-Status | Experiment
-  
-## Important Notes
 
 Arrow is still at a pre-revenue stage without a definitive business model. This Concept of Operations document assumes Arrow to bear the cost of building and operating aircraft.
 
 However, due to the significant financial and engineering resources required to build out certified, commercial scale vehicles, it is likely that we operate as a marketplace platform like Uber where original equipment manufacturers (OEMs) supply vehicles. Therefore, the pricing mechanism will be dramatically different than what `svc-pricing` implements.
 
-Some preliminary ideas about this business model will be outlined in this document under [Business Model Discussion](#business-model-discussion).
+### Metadata
 
-## Overview
+| Attribute     | Description                                                       |
+| ------------- |-------------------------------------------------------------------|
+| Maintainer(s) | [Services Team](https://github.com/orgs/Arrow-air/teams/services) |
+| Stuckee       | [@GoodluckH](https://github.com/GoodluckH)                        |
+| Status        | Draft                                                             |
+
+## :telescope: Overview
 
 `svc-pricing` provides the ticket price (in USD) for a given trip. The pricing model currently supports three use cases: cargo, rideshare, and charter.
 
 The price supplied and presented to the customers through GUI clients should be the definitive charge to be billed.
 
-## Related Documents
+## :books: Related Documents
 
 Document | Description
 --- | ---
 [High-Level Concept of Operations (CONOPS)](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md) | Overview of Arrow microservices.
 [High-Level Interface Control Document (ICD)](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md) | Interfaces and frameworks common to all Arrow microservices.
+[Requirements - `svc-pricing`](https://nocodb.arrowair.com/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements and user stories for this microservice.
 [Interface Control Document (ICD) - `svc-pricing`](./icd.md) | Defines the inputs and outputs of this microservice.
+[Software Design Document (SDD) - `svc-pricing`](./sdd.md) | Specifies the internal activity of this microservice.
 [Pricing Model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo) | Unit economics and pricing mechanism of flights. The core logic of `svc-pricing` is largely derived from the pricing model.
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
-[Software Design Document - `svc-pricing`](./sdd.md) | Software Design Document for `svc-pricing`.
-[Requirements - `svc-pricing`](https://nocodb.arrowair.com/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements for `svc-pricing`.
 
-## Motivation
+## :raised_hands: Motivation
 
 Arrow strives to provide compelling value propositions to customers. Having a predictable and refined pricing model builds trust through the increased transparency.
 
