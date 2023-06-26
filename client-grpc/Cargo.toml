@@ -1,29 +1,52 @@
 [package]
-description = "Arrow Pricing service GRPC client"
-edition     = "2021"                                                       # Allowed values are 2015, 2018, 2021
-homepage    = "https://www.arrowair.com/docs/documentation/services/intro"
-keywords    = ["vtol", "client", "pricing"]                                # max 5
-license     = "BUSL-1.1"
+description = "Arrow Pricing service gRPC client"
+keywords    = ["vtol", "client", "grpc", "pricing"] # max 5
 name        = "svc-pricing-client-grpc"
-repository  = "https://github.com/Arrow-air/svc-pricing"
 version     = "0.5.0"
 
-categories = [
-  "aerospace::drones",
-  "aerospace::protocols",
-] # max 5 -- https://crates.io/category_slugs
+authors.workspace      = true
+categories.workspace   = true
+edition.workspace      = true
+homepage.workspace     = true
+license-file.workspace = true
+repository.workspace   = true
+
+[features]
+dev       = ["mock", "tokio"]
+test_util = ["mock", "stub_backends", "tokio"]
+# Will add a 'mock' module for the enabled resources, providing access to mock data generation functions
+mock = []
+# Will use a stubbed server connection, only use for tests!
+stub_backends = ["svc-pricing/stub_server", "lib-common/grpc_mock", "tower"]
+# Will implement stub functions for the client, only use for tests!
+stub_client = ["svc-pricing"]
 
 [dependencies]
+cfg-if      = "1.0"
+log         = { version = "0.4" }
 prost       = "0.11"
 prost-types = "0.11"
+svc-pricing = { path = "../server", optional = true }
 tonic       = "0.8"
+tower       = { version = "0.4", optional = true }
+
+[dependencies.lib-common]
+features = ["grpc"]
+git      = "https://github.com/Arrow-air/lib-common.git"
+tag      = "v0.1.1-develop.2"
+
+[dependencies.tokio]
+features = ["macros", "rt-multi-thread"]
+optional = true
+version  = "1.28"
 
 [dev-dependencies]
-tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+logtest = "2.0"
 
-[lib]
-name = "svc_pricing_client"
-path = "src/lib.rs"
+# Make sure we enable the required modules for testing
+[dev-dependencies.svc-pricing-client-grpc]
+features = ["dev"]
+path     = "."
 
 [[example]]
-name = "client"
+name = "grpc"

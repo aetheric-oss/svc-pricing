@@ -2,13 +2,10 @@
 members = ["server", "client-grpc"]
 
 [workspace.package]
-edition = "2021"
-homepage = "https://www.arrowair.com/docs/documentation/services/intro"
-license = "BUSL-1.1"
+authors      = ["arrow-services <group-services@arrowair.com>"]
+edition      = "2021"
+homepage     = "https://www.arrowair.com/docs/documentation/services/intro"
 license-file = "LICENSE"
-repository = "https://github.com/Arrow-air/svc-pricing"
-categories = [
-  "aerospace::drones",
-  "aerospace::protocols",
-  "finance",
-] # max 5 -- https://crates.io/category_slugs
+repository   = "https://github.com/Arrow-air/svc-pricing"
+
+categories = ["aerospace::drones", "aerospace::protocols", "finance"]
