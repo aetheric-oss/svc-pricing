@@ -7,12 +7,12 @@ use svc_pricing::*;
 #[tokio::main]
 #[cfg(not(tarpaulin_include))]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("(svc-pricing) server startup.");
+    println!("(main) server startup.");
 
     // Will use default config settings if no environment vars are found.
     let config = Config::try_from_env().unwrap_or_default();
 
-    println!("{:?}", config);
+    // println!("(main) config: {:?}", config);
     // Start Logger
     let log_cfg: &str = config.log_config.as_str();
     if let Err(e) = log4rs::init_file(log_cfg, Default::default()) {
@@ -24,6 +24,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     tokio::spawn(grpc::server::grpc_server(config, None)).await?;
 
-    info!("(svc-pricing) server shutdown.");
+    info!("(main) server shutdown.");
     Ok(())
 }

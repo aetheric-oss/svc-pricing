@@ -48,14 +48,14 @@ pub enum PricingError {
 pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
     let requests = query.requests;
     debug!(
-        "(get_pricing) Getting pricing for {:?} requests",
+        "(get_pricing) Getting pricing for {:?} requests.",
         requests.len()
     );
     check_pricing_requests(&requests)?;
     let mut prices = Vec::new();
     match ServiceType::from_i32(requests[0].service_type) {
         Some(ServiceType::Cargo) => {
-            debug!("Cargo pricing");
+            debug!("(get_pricing) Cargo pricing.");
             for request in requests {
                 prices.push(get_cargo_pricing(request));
             }
@@ -67,7 +67,7 @@ pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
             //     prices.push(get_rideshare_pricing(request));
             // }
             // Ok(prices)
-            debug!("(get_pricing) Rideshare pricing not supported");
+            debug!("(get_pricing) Rideshare pricing not supported.");
             Err(PricingError::UnknownServiceType)
         }
         Some(ServiceType::Charter) => {
@@ -76,11 +76,11 @@ pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
             //     prices.push(get_charter_pricing(request));
             // }
             // Ok(prices)
-            debug!("(get_pricing) Charter pricing not supported");
+            debug!("(get_pricing) Charter pricing not supported.");
             Err(PricingError::UnknownServiceType)
         }
         None => {
-            debug!("Error parsing service type");
+            debug!("(get_pricing) Error parsing service type.");
             Err(PricingError::UnknownServiceType)
         }
     }
@@ -134,37 +134,44 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR: f32 = 0.3 * CARGO_DEPRECIATI
 /// after [Project
 /// Apollo](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo).
 fn get_cargo_pricing(query: PricingRequest) -> f32 {
-    debug!("Getting cargo pricing for query: {:?}", query);
+    debug!(
+        "(get_cargo_pricing) Getting cargo pricing for query: {:?}",
+        query
+    );
     let distance = query.distance_km;
-    debug!("Cargo take off and landing cost: {}", CARGO_TOL_COST_USD);
-    debug!("Distance: {}", distance);
+    debug!(
+        "(get_cargo_pricing) Cargo take off and landing cost: {}",
+        CARGO_TOL_COST_USD
+    );
+    debug!("(get_cargo_pricing) Distance: {}", distance);
     let trip_duration = distance / CARGO_CRUISE_SPEED_KM_PER_HR;
-    debug!("Trip duration: {}", trip_duration);
+    debug!("(get_cargo_pricing) Trip duration: {}", trip_duration);
     let trip_cruise_cost =
         trip_duration * CARGO_ELECTRICITY_COST_USD_PER_KWH * CARGO_CRUISE_POWER_CONSUMPTION_KW;
-    debug!("Trip cruise cost: {}", trip_cruise_cost);
+    debug!("(get_cargo_pricing) Trip cruise cost: {}", trip_cruise_cost);
     let depreciation_cost = trip_duration * CARGO_DEPRECIATION_RATE_USD_PER_HR;
-    debug!("Depreciation cost: {}", depreciation_cost);
+    debug!(
+        "(get_cargo_pricing) Depreciation cost: {}",
+        depreciation_cost
+    );
     let repair_and_maintenance_cost = trip_duration * CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR;
     debug!(
-        "Repair and maintenance cost: {}",
+        "(get_cargo_pricing) Repair and maintenance cost: {}",
         repair_and_maintenance_cost
     );
     let total_cost =
         CARGO_TOL_COST_USD + trip_cruise_cost + depreciation_cost + repair_and_maintenance_cost;
-    debug!("Total cost: {}", total_cost);
+    debug!("(get_cargo_pricing) Total cost: {}", total_cost);
     total_cost
 }
 
-// /// TODO: Pricing for rideshare.
+// /// TODO(R5) Pricing for rideshare.
 // fn get_rideshare_pricing(query: PricingRequest) -> f32 {
-//     //TODO
 //     0.5 * get_cargo_pricing(query)
 // }
 
-// /// TODO: Pricing for charter.
+// /// TODO(R5) Pricing for charter.
 // fn get_charter_pricing(query: PricingRequest) -> f32 {
-//     //TODO
 //     2.0 * get_cargo_pricing(query)
 // }
 

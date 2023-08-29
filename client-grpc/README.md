@@ -8,4 +8,4 @@
 
 ## Overview
 
-Exposes svc-pricing gRPC client functions
+Exposes svc-pricing gRPC client functions.

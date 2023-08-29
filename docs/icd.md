@@ -79,6 +79,7 @@ Two required fields:
 - `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
   charter
 - `distance_km`: the distance of the trip in km
+- `weight_kg`: the weight of the parcel
 
 ### gRPC Server Methods ("Services")
 

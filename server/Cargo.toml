@@ -32,19 +32,22 @@ anyhow       = "1.0"
 cargo-husky  = "1"
 config       = "0.13"
 dotenv       = "0.15"
-lib-common   = { git = "https://github.com/Arrow-air/lib-common.git", tag = "v0.1.1-develop.2" }
 log          = "0.4"
 openssl      = "0.10"
 prost        = "0.11"
 prost-types  = "0.11"
 serde        = "1.0"
 serde_json   = "1.0"
-snafu        = { version = "0.7", default-features = false }                                     # no_std
+snafu        = { version = "0.7", default-features = false }     # no_std
 tokio        = { version = "1.28", features = ["full"] }
 tonic        = "0.8"
 tonic-health = "0.8"
 tower        = { version = "0.4", features = ["limit"] }
 tower-http   = { version = "0.4", features = ["cors", "trace"] }
+
+[dependencies.lib-common]
+git = "https://github.com/Arrow-air/lib-common.git"
+tag = "v0.2.0"
 
 [dependencies.utoipa]
 features = ["axum_extras", "chrono"]
