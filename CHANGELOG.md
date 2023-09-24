@@ -1,3 +1,18 @@
+## [Release 0.5.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.5.1)
+
+### 🔥 Refactorings
+
+- use lib-common and mock/stub additions ([`00f2b77`](https://github.com/Arrow-air/svc-pricing/commit/00f2b7751704e43d435f85b0f86fc444eab76154))
+
+### 🛠 Maintenance
+
+- terraform provisioned file changes ([`35f31ff`](https://github.com/Arrow-air/svc-pricing/commit/35f31ff69979c8d121991f37f3f203c7db8d4834))
+- r3 final cleanup ([`c5cc2e1`](https://github.com/Arrow-air/svc-pricing/commit/c5cc2e10a5dead6c2af1e5c4e370877bbce91726))
+
+### 📚 Documentation
+
+- fix icons/banners and add client README ([`09242c2`](https://github.com/Arrow-air/svc-pricing/commit/09242c22eb64a2650fff901ff80e5e13f255c9a9))
+
 ## [Release 0.5.0](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.5.0)
 
 ### ✨ Features
