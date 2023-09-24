@@ -1,16 +1,16 @@
-/// Are you Ready?
+/// Ready Request object
 ///
 /// No arguments
 #[derive(Copy, Eq)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadyRequest {}
-/// I'm Ready
+/// Ready Response object
 #[derive(Copy, Eq)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadyResponse {
-    /// Indicate if the service is ready to accept requests.
+    /// True if ready
     #[prost(bool, tag = "1")]
     pub ready: bool,
 }
@@ -103,16 +103,16 @@ pub struct PricingResponse {
     pub prices: ::prost::alloc::vec::Vec<f32>,
 }
 /// Generated client implementations.
-pub mod pricing_client {
+#[cfg(not(tarpaulin_include))]
+pub mod rpc_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
     use tonic::codegen::http::Uri;
-    /// Pricing for different services: cargo, rideshare, and charter
     #[derive(Debug, Clone)]
-    pub struct PricingClient<T> {
+    pub struct RpcServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl PricingClient<tonic::transport::Channel> {
+    impl RpcServiceClient<tonic::transport::Channel> {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
@@ -123,7 +123,7 @@ pub mod pricing_client {
             Ok(Self::new(conn))
         }
     }
-    impl<T> PricingClient<T>
+    impl<T> RpcServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -141,7 +141,7 @@ pub mod pricing_client {
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
-        ) -> PricingClient<InterceptedService<T, F>>
+        ) -> RpcServiceClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -155,7 +155,7 @@ pub mod pricing_client {
                 http::Request<tonic::body::BoxBody>,
             >>::Error: Into<StdError> + Send + Sync,
         {
-            PricingClient::new(InterceptedService::new(inner, interceptor))
+            RpcServiceClient::new(InterceptedService::new(inner, interceptor))
         }
         /// Compress requests with the given encoding.
         ///
@@ -172,23 +172,6 @@ pub mod pricing_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        pub async fn get_pricing(
-            &mut self,
-            request: impl tonic::IntoRequest<super::PricingRequests>,
-        ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
-            let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grpc.Pricing/GetPricing");
-            self.inner.unary(request.into_request(), path, codec).await
-        }
         pub async fn is_ready(
             &mut self,
             request: impl tonic::IntoRequest<super::ReadyRequest>,
@@ -203,7 +186,26 @@ pub mod pricing_client {
                     )
                 })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/grpc.Pricing/IsReady");
+            let path = http::uri::PathAndQuery::from_static("/grpc.RpcService/is_ready");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn get_pricing(
+            &mut self,
+            request: impl tonic::IntoRequest<super::PricingRequests>,
+        ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status> {
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/grpc.RpcService/get_pricing",
+            );
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

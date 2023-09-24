@@ -1,36 +1,57 @@
 [package]
-description = "Arrow pricing service GRPC server"
-edition     = "2021"                                                       # Allowed values are 2015, 2018, 2021
-homepage    = "https://www.arrowair.com/docs/documentation/services/intro"
-keywords    = ["vtol", "client", "pricing"]                                # max 5
-license     = "BUSL-1.1"
+description = "Arrow pricing service gRPC server"
+keywords    = ["vtol", "server", "grpc", "rest", "pricing"] # max 5
 name        = "svc-pricing"
-repository  = "https://github.com/Arrow-air/svc-pricing"
-version     = "0.5.0"
+version     = "0.5.1-develop.0"
 
-categories = [
-  "aerospace::drones",
-  "aerospace::protocols",
-] # max 5 -- https://crates.io/category_slugs
+authors.workspace      = true
+categories.workspace   = true
+edition.workspace      = true
+homepage.workspace     = true
+license-file.workspace = true
+repository.workspace   = true
 
 [features]
-vendored-openssl = ['openssl/vendored']
+default          = []
+dev              = ["mock"]
+test_util        = ["mock", "stub_backends"]
+vendored-openssl = ["openssl/vendored"]
+# Will add a 'mock' module for the enabled resources, providing access to mock data generation functions
+mock = []
+# Will use a stubbed backend connection, only use for tests!
+stub_backends = [
+  # FIXME: add mock_clients of actual services you're depending on
+]
+# Will implement stub functions for the server, only use for tests!
+stub_server = ["test_util"]
+# Only added to support client-grpc feature when running tests
+stub_client = ["stub_backends"]
 
 [dependencies]
+anyhow       = "1.0"
 cargo-husky  = "1"
+config       = "0.13"
+dotenv       = "0.15"
 log          = "0.4"
 openssl      = "0.10"
 prost        = "0.11"
 prost-types  = "0.11"
-snafu        = { version = "0.7", default-features = false }                 # no_std
-tokio        = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+serde        = "1.0"
+serde_json   = "1.0"
+snafu        = { version = "0.7", default-features = false }     # no_std
+tokio        = { version = "1.28", features = ["full"] }
 tonic        = "0.8"
-tonic-health = "0.7"
+tonic-health = "0.8"
+tower        = { version = "0.4", features = ["limit"] }
+tower-http   = { version = "0.4", features = ["cors", "trace"] }
 
-[dev-dependencies.cargo-husky]
-default-features = false          # Disable features which are enabled by default
-features         = ["user-hooks"]
-version          = "1"
+[dependencies.lib-common]
+git = "https://github.com/Arrow-air/lib-common.git"
+tag = "v0.2.0"
+
+[dependencies.utoipa]
+features = ["axum_extras", "chrono"]
+version  = "3.3"
 
 [dependencies.log4rs]
 features = [
@@ -40,6 +61,19 @@ features = [
   "gzip",
 ]
 version = "1.2"
+
+[dev-dependencies]
+logtest = "2.0"
+
+[dev-dependencies.cargo-husky]
+default-features = false          # Disable features which are enabled by default
+features         = ["user-hooks"]
+version          = "1"
+
+# Make sure we enable the required modules when running tests
+[dev-dependencies.svc-pricing]
+features = ["dev"]
+path     = "."
 
 [build-dependencies]
 tonic-build = "0.8"

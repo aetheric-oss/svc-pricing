@@ -7,21 +7,21 @@
 syntax = "proto3";
 package grpc;
 
-// Are you Ready?
+service RpcService {
+    rpc is_ready (ReadyRequest) returns (ReadyResponse);
+    rpc get_pricing (PricingRequests) returns (PricingResponse);
+}
+
+// Ready Request object
 message ReadyRequest {
     // No arguments
 }
 
-// I'm Ready
+// Ready Response object
 message ReadyResponse {
-    // Indicate if the service is ready to accept requests.
-    bool ready = 1;
-}
 
-// Pricing for different services: cargo, rideshare, and charter
-service Pricing {
-    rpc GetPricing (PricingRequests) returns (PricingResponse);
-    rpc IsReady (ReadyRequest) returns (ReadyResponse);
+    // True if ready
+    bool ready = 1;
 }
 
 // An array of pricing requests.
@@ -29,7 +29,6 @@ message PricingRequests {
     // An array of pricing requests.
     repeated PricingRequest requests = 1;
 }
-
 
 // Get the price for a type of service.
 //
@@ -57,10 +56,7 @@ message PricingRequest {
         // Charter service that can be reserved for a specific trip.
         CHARTER = 2;
     }
-
 }
-
-
 
 // Pricing for a service.
 //
