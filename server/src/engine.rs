@@ -53,15 +53,15 @@ pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
     );
     check_pricing_requests(&requests)?;
     let mut prices = Vec::new();
-    match ServiceType::from_i32(requests[0].service_type) {
-        Some(ServiceType::Cargo) => {
+    match ServiceType::try_from(requests[0].service_type) {
+        Ok(ServiceType::Cargo) => {
             debug!("(get_pricing) Cargo pricing.");
             for request in requests {
                 prices.push(get_cargo_pricing(request));
             }
             Ok(prices)
         }
-        Some(ServiceType::Rideshare) => {
+        Ok(ServiceType::Rideshare) => {
             // debug!("Rideshare pricing");
             // for request in requests {
             //     prices.push(get_rideshare_pricing(request));
@@ -70,7 +70,7 @@ pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
             debug!("(get_pricing) Rideshare pricing not supported.");
             Err(PricingError::UnknownServiceType)
         }
-        Some(ServiceType::Charter) => {
+        Ok(ServiceType::Charter) => {
             // debug!("Charter pricing");
             // for request in requests {
             //     prices.push(get_charter_pricing(request));
@@ -79,8 +79,8 @@ pub fn get_pricing(query: PricingRequests) -> Result<Vec<f32>, PricingError> {
             debug!("(get_pricing) Charter pricing not supported.");
             Err(PricingError::UnknownServiceType)
         }
-        None => {
-            debug!("(get_pricing) Error parsing service type.");
+        Err(e) => {
+            debug!("(get_pricing) Error parsing service type: {}", e);
             Err(PricingError::UnknownServiceType)
         }
     }
