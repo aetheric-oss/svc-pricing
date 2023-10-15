@@ -34,24 +34,20 @@ config       = "0.13"
 dotenv       = "0.15"
 log          = "0.4"
 openssl      = "0.10"
-prost        = "0.11"
-prost-types  = "0.11"
+prost        = "0.12"
+prost-types  = "0.12"
 serde        = "1.0"
 serde_json   = "1.0"
 snafu        = { version = "0.7", default-features = false }     # no_std
-tokio        = { version = "1.28", features = ["full"] }
-tonic        = "0.8"
-tonic-health = "0.8"
+tokio        = { version = "1.33", features = ["full"] }
+tonic        = "0.10"
+tonic-health = "0.10"
 tower        = { version = "0.4", features = ["limit"] }
 tower-http   = { version = "0.4", features = ["cors", "trace"] }
 
 [dependencies.lib-common]
 git = "https://github.com/Arrow-air/lib-common.git"
-tag = "v0.2.0"
-
-[dependencies.utoipa]
-features = ["axum_extras", "chrono"]
-version  = "3.3"
+tag = "v0.2.1-develop.0"
 
 [dependencies.log4rs]
 features = [
@@ -61,6 +57,10 @@ features = [
   "gzip",
 ]
 version = "1.2"
+
+[dependencies.utoipa]
+features = ["axum_extras", "chrono"]
+version  = "4.0"
 
 [dev-dependencies]
 logtest = "2.0"
@@ -76,4 +76,4 @@ features = ["dev"]
 path     = "."
 
 [build-dependencies]
-tonic-build = "0.8"
+tonic-build = { version = "0.10", features = ["cleanup-markdown"] }

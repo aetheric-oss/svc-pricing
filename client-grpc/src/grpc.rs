@@ -25,9 +25,10 @@ pub struct PricingRequests {
 /// Get the price for a type of service.
 ///
 /// Two required fields:
-/// - `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
-///    charter
-/// - `distance`: the distance of the trip in km
+///
+/// * `service_type`: the type of service. 0 = cargo, 1 = rideshare, 2 =
+///   charter
+/// * `distance`: the distance of the trip in km
 #[derive(Copy)]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -116,7 +117,7 @@ pub mod rpc_service_client {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
-            D: std::convert::TryInto<tonic::transport::Endpoint>,
+            D: TryInto<tonic::transport::Endpoint>,
             D::Error: Into<StdError>,
         {
             let conn = tonic::transport::Endpoint::new(dst)?.connect().await?;
@@ -172,10 +173,26 @@ pub mod rpc_service_client {
             self.inner = self.inner.accept_compressed(encoding);
             self
         }
+        /// Limits the maximum size of a decoded message.
+        ///
+        /// Default: `4MB`
+        #[must_use]
+        pub fn max_decoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_decoding_message_size(limit);
+            self
+        }
+        /// Limits the maximum size of an encoded message.
+        ///
+        /// Default: `usize::MAX`
+        #[must_use]
+        pub fn max_encoding_message_size(mut self, limit: usize) -> Self {
+            self.inner = self.inner.max_encoding_message_size(limit);
+            self
+        }
         pub async fn is_ready(
             &mut self,
             request: impl tonic::IntoRequest<super::ReadyRequest>,
-        ) -> Result<tonic::Response<super::ReadyResponse>, tonic::Status> {
+        ) -> std::result::Result<tonic::Response<super::ReadyResponse>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -187,12 +204,17 @@ pub mod rpc_service_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static("/grpc.RpcService/is_ready");
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new("grpc.RpcService", "is_ready"));
+            self.inner.unary(req, path, codec).await
         }
         pub async fn get_pricing(
             &mut self,
             request: impl tonic::IntoRequest<super::PricingRequests>,
-        ) -> Result<tonic::Response<super::PricingResponse>, tonic::Status> {
+        ) -> std::result::Result<
+            tonic::Response<super::PricingResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -206,7 +228,10 @@ pub mod rpc_service_client {
             let path = http::uri::PathAndQuery::from_static(
                 "/grpc.RpcService/get_pricing",
             );
-            self.inner.unary(request.into_request(), path, codec).await
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("grpc.RpcService", "get_pricing"));
+            self.inner.unary(req, path, codec).await
         }
     }
 }
