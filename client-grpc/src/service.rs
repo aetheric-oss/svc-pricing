@@ -26,17 +26,12 @@ where
     /// # Examples
     /// ```
     /// use lib_common::grpc::get_endpoint_from_env;
-    /// use svc_pricing_client_grpc::client::{ReadyRequest, RpcServiceClient};
-    /// use svc_pricing_client_grpc::{Client, GrpcClient};
-    /// use svc_pricing_client_grpc::service::Client as ServiceClient;
-    /// use tonic::transport::Channel;
+    /// use svc_pricing_client_grpc::prelude::*;
     ///
     /// async fn example () -> Result<(), Box<dyn std::error::Error>> {
     ///     let (host, port) = get_endpoint_from_env("SERVER_HOSTNAME", "SERVER_PORT_GRPC");
-    ///     let connection = GrpcClient::<RpcServiceClient<Channel>>::new_client(&host, port, "pricing");
-    ///     let response = connection
-    ///         .is_ready(ReadyRequest {})
-    ///         .await?;
+    ///     let connection = PricingClient::new_client(&host, port, "pricing");
+    ///     let response = connection.is_ready(pricing::ReadyRequest {}).await?;
     ///     println!("RESPONSE={:?}", response.into_inner());
     ///     Ok(())
     /// }
@@ -57,16 +52,13 @@ where
     /// # Examples
     /// ```
     /// use lib_common::grpc::get_endpoint_from_env;
-    /// use svc_pricing_client_grpc::client::{PricingRequests, PricingRequest, RpcServiceClient};
-    /// use svc_pricing_client_grpc::{Client, GrpcClient};
-    /// use svc_pricing_client_grpc::service::Client as ServiceClient;
-    /// use tonic::transport::Channel;
+    /// use svc_pricing_client_grpc::prelude::*;
     ///
     /// async fn example () -> Result<(), Box<dyn std::error::Error>> {
     ///     let (host, port) = get_endpoint_from_env("SERVER_HOSTNAME", "SERVER_PORT_GRPC");
-    ///     let connection = GrpcClient::<RpcServiceClient<Channel>>::new_client(&host, port, "pricing");
-    ///     let query = PricingRequests {
-    ///         requests: vec![PricingRequest {
+    ///     let connection = PricingClient::new_client(&host, port, "pricing");
+    ///     let query = pricing::PricingRequests {
+    ///         requests: vec![pricing::PricingRequest {
     ///             service_type: 0,
     ///             weight_kg: 100.0,
     ///             distance_km: 100.0,

@@ -36,7 +36,7 @@ See the [High-Level Services ICD](https://github.com/Arrow-air/se-services/blob/
 
 ### Files
 
-These interfaces are defined in a protocol buffer file, [`svc-pricing-grpc.proto`](../proto/svc-pricing-grpc.proto).
+These interfaces are defined in a protocol buffer file, [`grpc.proto`](../proto/grpc.proto).
 
 ### Integrated Authentication & Encryption
 
