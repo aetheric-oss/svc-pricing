@@ -3,7 +3,7 @@
 ///generates .rs files in src directory
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let proto_dir = "../proto";
-    let proto_file = &format!("{}/svc-pricing-grpc.proto", proto_dir);
+    let proto_file = &format!("{}/grpc.proto", proto_dir);
 
     let server_config = tonic_build::configure()
         .type_attribute("ReadyRequest", "#[derive(Copy, Eq)]")
@@ -24,7 +24,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .build_client(false)
         .compile(&[proto_file], &[proto_dir])?;
 
-    println!("(build) cargo:rerun-if-changed={}", proto_file);
+    println!("cargo:rerun-if-changed={}", proto_file);
 
     Ok(())
 }
