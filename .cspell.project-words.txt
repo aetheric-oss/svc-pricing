@@ -40,3 +40,5 @@ Refactorings
 serde
 Stuckee
 utoipa
+Lcov
+seccomp
