@@ -46,7 +46,7 @@ tower        = { version = "0.4", features = ["limit"] }
 tower-http   = { version = "0.4", features = ["cors", "trace"] }
 
 [dependencies.lib-common]
-git = "https://github.com/Arrow-air/lib-common.git"
+git = "https://github.com/aetheric-oss/lib-common.git"
 tag = "latest-develop"
 
 [dependencies.log4rs]
