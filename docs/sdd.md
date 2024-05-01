@@ -16,8 +16,8 @@ The pricing module is responsible for computing the cost for given flight trips.
 
 | Attribute     | Description                                                       |
 | ------------- |-------------------------------------------------------------------|
-| Maintainer(s) | [Services Team](https://github.com/orgs/Arrow-air/teams/services) |
-| Stuckee       | [@GoodluckH](https://github.com/GoodluckH)                        |
+| Maintainer(s) | [Aetheric Realm Team](https://github.com/orgs/aetheric-oss/teams/dev-realm) |
+| Stuckee       | [@ServiceDog](https://github.com/ServiceDog)                        |
 | Status        | Development                                                       |
 
 ## :books: Related Documents
@@ -25,8 +25,8 @@ The pricing module is responsible for computing the cost for given flight trips.
 Document | Description
 --- | ---
 --- | ---
-[High-Level Concept of Operations (CONOPS)](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md) | Overview of Arrow microservices.
-[High-Level Interface Control Document (ICD)](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md) | Interfaces and frameworks common to all Arrow microservices.
+[High-Level Concept of Operations (CONOPS)](https://github.com/aetheric-oss/se-services/blob/develop/docs/conops.md) | Overview of Arrow microservices.
+[High-Level Interface Control Document (ICD)](https://github.com/aetheric-oss/se-services/blob/develop/docs/icd.md) | Interfaces and frameworks common to all Arrow microservices.
 [Requirements - `svc-pricing`](https://nocodb.arrowair.com/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements and user stories for this microservice.
 [Concept of Operations - `svc-pricing`](./conops.md) | Defines the motivation and duties of this microservice.
 [Interface Control Document (ICD) - `svc-pricing`](./icd.md) | Defines the inputs and outputs of this microservice.

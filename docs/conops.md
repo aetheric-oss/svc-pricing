@@ -10,8 +10,8 @@ However, due to the significant financial and engineering resources required to 
 
 | Attribute     | Description                                                       |
 | ------------- |-------------------------------------------------------------------|
-| Maintainer(s) | [Services Team](https://github.com/orgs/Arrow-air/teams/services) |
-| Stuckee       | [@GoodluckH](https://github.com/GoodluckH)                        |
+| Maintainer(s) | [Aetheric Realm Team](https://github.com/orgs/aetheric-oss/teams/dev-realm) |
+| Stuckee       | [A.M. Smith](https://github.com/ServiceDog)                       |
 | Status        | Draft                                                             |
 
 ## :telescope: Overview
@@ -24,8 +24,8 @@ The price supplied and presented to the customers through GUI clients should be 
 
 Document | Description
 --- | ---
-[High-Level Concept of Operations (CONOPS)](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md) | Overview of Arrow microservices.
-[High-Level Interface Control Document (ICD)](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md) | Interfaces and frameworks common to all Arrow microservices.
+[High-Level Concept of Operations (CONOPS)](https://github.com/aetheric-oss/se-services/blob/develop/docs/conops.md) | Overview of Arrow microservices.
+[High-Level Interface Control Document (ICD)](https://github.com/aetheric-oss/se-services/blob/develop/docs/icd.md) | Interfaces and frameworks common to all Arrow microservices.
 [Requirements - `svc-pricing`](https://nocodb.arrowair.com/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements and user stories for this microservice.
 [Interface Control Document (ICD) - `svc-pricing`](./icd.md) | Defines the inputs and outputs of this microservice.
 [Software Design Document (SDD) - `svc-pricing`](./sdd.md) | Specifies the internal activity of this microservice.
@@ -72,11 +72,11 @@ Unavailable | The service is down.
 
 ## Operational Scenarios, Use Cases and/or Design Reference Missions
 
-See the [High-Level CONOPS](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md).
+See the [High-Level CONOPS](https://github.com/aetheric-oss/se-services/blob/develop/docs/conops.md).
 
 ## Support Environment
 
-See the [High-Level CONOPS](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md).
+See the [High-Level CONOPS](https://github.com/aetheric-oss/se-services/blob/develop/docs/conops.md).
 
 ## Business Model Discussion
 
@@ -85,7 +85,7 @@ The current assumed business model is  bearing the cost of building and operatin
 
 Under this business model, the motivation of pricing is to recoup the CapEx investments in building aircraft and the OpEx in operating the fleet. While Arrow may benefit from the simplicity of the business model and enjoy the superior quality control from a vertically integrated business, the upfront capital and talent investments may result in a protracted pre-revenue phase.
 
-More, the OEM space is already crowded with mature players like [Lilium](https://lilium.com/), [Joby](https://www.jobyaviation.com/), [Elroy Air](https://elroyair.com/), [Zipline](https://www.flyzipline.com/), etc., many of them have already had commercial operations ([here](https://www.pfizer.com/news/press-release/press-release-detail/zipline-pfizer-and-biontech-collaboration-paves-way) and [here](https://aerospaceamerica.aiaa.org/elroy-fedex-tests-cargo-delivery/)). The Services team believes that competing in a traditional, CapEx- and operation-heavy business segment is challenging given the long development cycle and the dynamics of commoditization.
+More, the OEM space is already crowded with mature players like [Lilium](https://lilium.com/), [Joby](https://www.jobyaviation.com/), [Elroy Air](https://elroyair.com/), [Zipline](https://www.flyzipline.com/), etc., many of them have already had commercial operations ([here](https://www.pfizer.com/news/press-release/press-release-detail/zipline-pfizer-and-biontech-collaboration-paves-way) and [here](https://aerospaceamerica.aiaa.org/elroy-fedex-tests-cargo-delivery/)). The Aetheric Realm Team believes that competing in a traditional, CapEx- and operation-heavy business segment is challenging given the long development cycle and the dynamics of commoditization.
 
 Last but not least, certifications with different government agencies around the world can be difficult to navigate and require significant legal resources and even lobbying efforts. Diverting our limited resources and contributors' time on bureaucratic processes may drag down the progress of the entire organization, especially given that Arrow operates on an anonymity-first principle, which can draw extra scrutiny from aviation regulatory bodies.
 
