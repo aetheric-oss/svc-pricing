@@ -1,4 +1,4 @@
-![Arrow Banner](https://github.com/Arrow-air/tf-github/raw/main/src/templates/doc-banner-services.png)
+![Arrow Banner](https://github.com/aetheric-oss/.github/blob/main/assets/doc-banner.png)
 
 # Concept of Operations - `svc-pricing`
 
