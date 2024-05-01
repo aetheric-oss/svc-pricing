@@ -27,7 +27,7 @@ Zipline
 commoditization
 healthcheck
 commitlint
-GoodluckH
+ServiceDog
 appender
 appenders
 commitlintrc
