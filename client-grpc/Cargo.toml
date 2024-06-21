@@ -1,6 +1,6 @@
 [package]
-description = "Arrow Pricing service gRPC client"
-keywords    = ["vtol", "client", "grpc", "pricing"] # max 5
+description = "Aetheric Pricing service gRPC client"
+keywords    = ["vtol", "client", "grpc", "pricing"]  # max 5
 name        = "svc-pricing-client-grpc"
 version     = "0.5.2-develop.4"
 
@@ -38,7 +38,7 @@ tower       = { version = "0.4", optional = true }
 [dependencies.lib-common]
 features = ["grpc"]
 git      = "https://github.com/aetheric-oss/lib-common.git"
-tag      = "latest-develop"
+tag      = "main"
 
 [dependencies.tokio]
 features = ["macros", "rt-multi-thread"]
