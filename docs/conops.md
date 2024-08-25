@@ -11,7 +11,7 @@ However, due to the significant financial and engineering resources required to 
 | Attribute     | Description                                                       |
 | ------------- |-------------------------------------------------------------------|
 | Maintainer(s) | [Aetheric Realm Team](https://github.com/orgs/aetheric-oss/teams/dev-realm) |
-| Stuckee       | [A.M. Smith](https://github.com/ServiceDog)                       |
+| Stuckee       | [A.M. Smith](https://github.com/amsmith-pro)                       |
 | Status        | Draft                                                             |
 
 ## :telescope: Overview
@@ -29,7 +29,6 @@ Document | Description
 [Requirements - `svc-pricing`](https://nocodb.aetheric.nl/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements and user stories for this microservice.
 [Interface Control Document (ICD) - `svc-pricing`](./icd.md) | Defines the inputs and outputs of this microservice.
 [Software Design Document (SDD) - `svc-pricing`](./sdd.md) | Specifies the internal activity of this microservice.
-[Pricing Model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo) | Unit economics and pricing mechanism of flights. The core logic of `svc-pricing` is largely derived from the pricing model.
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
 
 ## :raised_hands: Motivation
@@ -130,16 +129,10 @@ Key points to discuss:
 ## Risks and Potential Issues
 ***The underlying pricing model may be incorrectly constructed, thereby over- or under-price trips.***
 
-The pricing logic of `svc-pricing` derives from our [pricing model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo), which is preliminary and will be submitted for review to external consultants. And currently, the pricing model makes a number of rough estimates on some key inputs like the cost basis of a cargo aircraft. With inaccurate pricing Arrow's business, reputation, results of operations and financial condition can be materially and adversely affected. 
+Currently, the pricing model makes a number of rough estimates on some key inputs like the cost basis of a cargo aircraft. This will be more customizable by asset providers in the future.
 
 ***The pricing service may experience outage.***
 
 Our cloud service providers and other services `svc-pricing` depends on may be impacted by political events, trade and other international disputes, war, terrorism, natural disasters, public health issues, industrial accidents and other business interruptions. 
 
 The unavailability of the pricing service will materially and adversely disrupt the ridesharing network by disabling scheduling of new trips, which may result in an increased number of underutilized aircraft, vertiports, pilots, and staffs. Our customer base may experience churns as a result of unavailable services. Additional costs may be incurred to fix the outage and to resume the network activity.
-
-## Appendix A: Citations
-N/A
-
-## Appendix B: Acronyms & Glossary
-See the [Arrow Glossary](https://www.arrowair.com/docs/documentation/glossary).

@@ -108,7 +108,6 @@ fn check_pricing_requests(requests: &[PricingRequest]) -> Result<(), PricingErro
 // ------------------------------------------------------------------
 // Cargo pricing assumptions
 // Expect these constants to be pulled from svc-storage in the future
-// https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo
 // ------------------------------------------------------------------
 
 /// Take off and landing cost in dollars.
@@ -129,10 +128,6 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR: f32 = 0.3 * CARGO_DEPRECIATI
 // ------------------------------------------------------------------
 
 /// Pricing for cargo.
-///
-/// Pricing is based on distance for now. The unit economics are modeled
-/// after [Project
-/// Apollo](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo).
 fn get_cargo_pricing(query: PricingRequest) -> f32 {
     debug!(
         "(get_cargo_pricing) Getting cargo pricing for query: {:?}",

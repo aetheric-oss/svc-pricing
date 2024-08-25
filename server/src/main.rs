@@ -6,6 +6,7 @@ use svc_pricing::*;
 
 #[tokio::main]
 #[cfg(not(tarpaulin_include))]
+// no_coverage: (R5) Can not be tested in unit test, should be part of integration tests.
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Will use default config settings if no environment vars are found.
     let config = Config::try_from_env()
