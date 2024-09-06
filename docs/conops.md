@@ -1,4 +1,4 @@
-![Arrow Banner](https://github.com/Arrow-air/tf-github/raw/main/src/templates/doc-banner-services.png)
+![Aetheric Banner](https://github.com/aetheric-oss/.github/raw/main/assets/doc-banner.png)
 
 # Concept of Operations - `svc-pricing`
 
@@ -10,8 +10,8 @@ However, due to the significant financial and engineering resources required to 
 
 | Attribute     | Description                                                       |
 | ------------- |-------------------------------------------------------------------|
-| Maintainer(s) | [Services Team](https://github.com/orgs/Arrow-air/teams/services) |
-| Stuckee       | [@GoodluckH](https://github.com/GoodluckH)                        |
+| Maintainer(s) | [Aetheric Realm Team](https://github.com/orgs/aetheric-oss/teams/dev-realm) |
+| Stuckee       | [A.M. Smith](https://github.com/amsmith-pro)                       |
 | Status        | Draft                                                             |
 
 ## :telescope: Overview
@@ -24,12 +24,11 @@ The price supplied and presented to the customers through GUI clients should be 
 
 Document | Description
 --- | ---
-[High-Level Concept of Operations (CONOPS)](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md) | Overview of Arrow microservices.
-[High-Level Interface Control Document (ICD)](https://github.com/Arrow-air/se-services/blob/develop/docs/icd.md) | Interfaces and frameworks common to all Arrow microservices.
-[Requirements - `svc-pricing`](https://nocodb.arrowair.com/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements and user stories for this microservice.
+[High-Level Concept of Operations (CONOPS)](https://github.com/aetheric-oss/se-services/blob/develop/docs/conops.md) | Overview of Aetheric microservices.
+[High-Level Interface Control Document (ICD)](https://github.com/aetheric-oss/se-services/blob/develop/docs/icd.md) | Interfaces and frameworks common to all Aetheric microservices.
+[Requirements - `svc-pricing`](https://nocodb.aetheric.nl/dashboard/#/nc/view/045288a8-3875-4429-bdaa-9f578275adef) | Requirements and user stories for this microservice.
 [Interface Control Document (ICD) - `svc-pricing`](./icd.md) | Defines the inputs and outputs of this microservice.
 [Software Design Document (SDD) - `svc-pricing`](./sdd.md) | Specifies the internal activity of this microservice.
-[Pricing Model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo) | Unit economics and pricing mechanism of flights. The core logic of `svc-pricing` is largely derived from the pricing model.
 [Uber Elevate White Paper](https://evtol.news/__media/PDFs/UberElevateWhitePaperOct2016.pdf) | Uber's research on UAM operations. Certain economic assumptions are referenced by Arrow's pricing model.
 
 ## :raised_hands: Motivation
@@ -72,11 +71,11 @@ Unavailable | The service is down.
 
 ## Operational Scenarios, Use Cases and/or Design Reference Missions
 
-See the [High-Level CONOPS](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md).
+See the [High-Level CONOPS](https://github.com/aetheric-oss/se-services/blob/develop/docs/conops.md).
 
 ## Support Environment
 
-See the [High-Level CONOPS](https://github.com/Arrow-air/se-services/blob/develop/docs/conops.md).
+See the [High-Level CONOPS](https://github.com/aetheric-oss/se-services/blob/develop/docs/conops.md).
 
 ## Business Model Discussion
 
@@ -85,7 +84,7 @@ The current assumed business model is  bearing the cost of building and operatin
 
 Under this business model, the motivation of pricing is to recoup the CapEx investments in building aircraft and the OpEx in operating the fleet. While Arrow may benefit from the simplicity of the business model and enjoy the superior quality control from a vertically integrated business, the upfront capital and talent investments may result in a protracted pre-revenue phase.
 
-More, the OEM space is already crowded with mature players like [Lilium](https://lilium.com/), [Joby](https://www.jobyaviation.com/), [Elroy Air](https://elroyair.com/), [Zipline](https://www.flyzipline.com/), etc., many of them have already had commercial operations ([here](https://www.pfizer.com/news/press-release/press-release-detail/zipline-pfizer-and-biontech-collaboration-paves-way) and [here](https://aerospaceamerica.aiaa.org/elroy-fedex-tests-cargo-delivery/)). The Services team believes that competing in a traditional, CapEx- and operation-heavy business segment is challenging given the long development cycle and the dynamics of commoditization.
+More, the OEM space is already crowded with mature players like [Lilium](https://lilium.com/), [Joby](https://www.jobyaviation.com/), [Elroy Air](https://elroyair.com/), [Zipline](https://www.flyzipline.com/), etc., many of them have already had commercial operations ([here](https://www.pfizer.com/news/press-release/press-release-detail/zipline-pfizer-and-biontech-collaboration-paves-way) and [here](https://aerospaceamerica.aiaa.org/elroy-fedex-tests-cargo-delivery/)). The Aetheric Realm Team believes that competing in a traditional, CapEx- and operation-heavy business segment is challenging given the long development cycle and the dynamics of commoditization.
 
 Last but not least, certifications with different government agencies around the world can be difficult to navigate and require significant legal resources and even lobbying efforts. Diverting our limited resources and contributors' time on bureaucratic processes may drag down the progress of the entire organization, especially given that Arrow operates on an anonymity-first principle, which can draw extra scrutiny from aviation regulatory bodies.
 
@@ -130,16 +129,10 @@ Key points to discuss:
 ## Risks and Potential Issues
 ***The underlying pricing model may be incorrectly constructed, thereby over- or under-price trips.***
 
-The pricing logic of `svc-pricing` derives from our [pricing model](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo), which is preliminary and will be submitted for review to external consultants. And currently, the pricing model makes a number of rough estimates on some key inputs like the cost basis of a cargo aircraft. With inaccurate pricing Arrow's business, reputation, results of operations and financial condition can be materially and adversely affected. 
+Currently, the pricing model makes a number of rough estimates on some key inputs like the cost basis of a cargo aircraft. This will be more customizable by asset providers in the future.
 
 ***The pricing service may experience outage.***
 
 Our cloud service providers and other services `svc-pricing` depends on may be impacted by political events, trade and other international disputes, war, terrorism, natural disasters, public health issues, industrial accidents and other business interruptions. 
 
 The unavailability of the pricing service will materially and adversely disrupt the ridesharing network by disabling scheduling of new trips, which may result in an increased number of underutilized aircraft, vertiports, pilots, and staffs. Our customer base may experience churns as a result of unavailable services. Additional costs may be incurred to fix the outage and to resume the network activity.
-
-## Appendix A: Citations
-N/A
-
-## Appendix B: Acronyms & Glossary
-See the [Arrow Glossary](https://www.arrowair.com/docs/documentation/glossary).

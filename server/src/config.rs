@@ -53,21 +53,21 @@ mod tests {
 
     #[tokio::test]
     async fn test_config_from_default() {
-        crate::get_log_handle().await;
-        ut_info!("(test_config_from_default) Start.");
+        lib_common::logger::get_log_handle().await;
+        ut_info!("Start.");
 
         let config = Config::default();
 
         assert_eq!(config.docker_port_grpc, 50051);
         assert_eq!(config.log_config, String::from("log4rs.yaml"));
 
-        ut_info!("(test_config_from_default) Success.");
+        ut_info!("Success.");
     }
 
     #[tokio::test]
     async fn test_config_from_env() {
-        crate::get_log_handle().await;
-        ut_info!("(test_config_from_env) Start.");
+        lib_common::logger::get_log_handle().await;
+        ut_info!("Start.");
 
         std::env::set_var("DOCKER_PORT_GRPC", "6789");
         std::env::set_var("LOG_CONFIG", "config_file.yaml");
@@ -79,6 +79,6 @@ mod tests {
         assert_eq!(config.docker_port_grpc, 6789);
         assert_eq!(config.log_config, String::from("config_file.yaml"));
 
-        ut_info!("(test_config_from_env) Success.");
+        ut_info!("Success.");
     }
 }

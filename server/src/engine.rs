@@ -108,7 +108,6 @@ fn check_pricing_requests(requests: &[PricingRequest]) -> Result<(), PricingErro
 // ------------------------------------------------------------------
 // Cargo pricing assumptions
 // Expect these constants to be pulled from svc-storage in the future
-// https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo
 // ------------------------------------------------------------------
 
 /// Take off and landing cost in dollars.
@@ -129,10 +128,6 @@ const CARGO_REPAIR_AND_MAINTENANCE_RATE_USD_PER_HR: f32 = 0.3 * CARGO_DEPRECIATI
 // ------------------------------------------------------------------
 
 /// Pricing for cargo.
-///
-/// Pricing is based on distance for now. The unit economics are modeled
-/// after [Project
-/// Apollo](https://docs.google.com/spreadsheets/d/1mjPtaIn3E5m7r4nyKt_sJKG9BSFm2ty7Gzo7OqERxwo).
 fn get_cargo_pricing(query: PricingRequest) -> f32 {
     debug!(
         "(get_cargo_pricing) Getting cargo pricing for query: {:?}",
@@ -194,28 +189,28 @@ mod tests {
 
     #[test]
     fn test_get_rideshare_pricing() {
-        // let query = PricingRequests {
-        //     requests: vec![PricingRequest {
-        //         service_type: ServiceType::Rideshare as i32,
-        //         weight_kg: 100.0,
-        //         distance_km: 100.0,
-        //     }],
-        // };
-        // let prices = get_pricing(query).unwrap();
-        // assert_eq!(prices[0], 9.176771);
+        let query = PricingRequests {
+            requests: vec![PricingRequest {
+                service_type: ServiceType::Rideshare as i32,
+                weight_kg: 100.0,
+                distance_km: 100.0,
+            }],
+        };
+        let error = get_pricing(query).unwrap_err();
+        assert_eq!(error, PricingError::UnknownServiceType);
     }
 
     #[test]
     fn test_get_charter_pricing() {
-        // let query = PricingRequests {
-        //     requests: vec![PricingRequest {
-        //         service_type: ServiceType::Charter as i32,
-        //         weight_kg: 100.0,
-        //         distance_km: 100.0,
-        //     }],
-        // };
-        // let prices = get_pricing(query).unwrap();
-        // assert_eq!(prices[0], 36.707085);
+        let query = PricingRequests {
+            requests: vec![PricingRequest {
+                service_type: ServiceType::Charter as i32,
+                weight_kg: 100.0,
+                distance_km: 100.0,
+            }],
+        };
+        let error = get_pricing(query).unwrap_err();
+        assert_eq!(error, PricingError::UnknownServiceType);
     }
 
     #[test]
@@ -255,22 +250,22 @@ mod tests {
 
     #[test]
     fn test_invalid_multiple_service_type() {
-        // let query1 = PricingRequest {
-        //     service_type: ServiceType::Cargo as i32,
-        //     weight_kg: 100.0,
-        //     distance_km: 100.0,
-        // };
-        // let query2 = PricingRequest {
-        //     service_type: ServiceType::Rideshare as i32,
-        //     weight_kg: 100.0,
-        //     distance_km: 100.0,
-        // };
-        // let pricing_requests = vec![query1, query2];
-        // let query = PricingRequests {
-        //     requests: pricing_requests,
-        // };
-        // let prices = get_pricing(query);
-        // assert_eq!(prices, Err(PricingError::MultipleServiceTypes));
+        let query1 = PricingRequest {
+            service_type: ServiceType::Cargo as i32,
+            weight_kg: 100.0,
+            distance_km: 100.0,
+        };
+        let query2 = PricingRequest {
+            service_type: ServiceType::Rideshare as i32,
+            weight_kg: 100.0,
+            distance_km: 100.0,
+        };
+        let pricing_requests = vec![query1, query2];
+        let query = PricingRequests {
+            requests: pricing_requests,
+        };
+        let error = get_pricing(query).unwrap_err();
+        assert_eq!(error, PricingError::MultipleServiceTypes);
     }
 
     #[test]

@@ -1,8 +1,8 @@
 [package]
-description = "Arrow pricing service gRPC server"
+description = "Aetheric pricing service gRPC server"
 keywords    = ["vtol", "server", "grpc", "rest", "pricing"] # max 5
 name        = "svc-pricing"
-version     = "0.5.2-develop.1"
+version     = "0.5.2-develop.4"
 
 authors.workspace      = true
 categories.workspace   = true
@@ -46,8 +46,8 @@ tower        = { version = "0.4", features = ["limit"] }
 tower-http   = { version = "0.4", features = ["cors", "trace"] }
 
 [dependencies.lib-common]
-git = "https://github.com/Arrow-air/lib-common.git"
-tag = "latest-develop"
+git = "https://github.com/aetheric-oss/lib-common.git"
+tag = "v2.0.0"
 
 [dependencies.log4rs]
 features = [
