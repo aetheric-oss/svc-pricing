@@ -1,3 +1,26 @@
+## [Release 0.6.0](https://github.com/aetheric-oss/svc-pricing/releases/tag/v0.6.0)
+
+### ✨ Features
+
+-  **client-grpc:** add prelude module and fix examples ([`6e55d2f`](https://github.com/aetheric-oss/svc-pricing/commit/6e55d2fdf2f31d3e1f91ed83e696dbbcb7a13b5d))
+- improve unit tests and arrow references ([`2ce2b1f`](https://github.com/aetheric-oss/svc-pricing/commit/2ce2b1fe1317e5f7d4cfe61c00e361ceabe76b50))
+
+### 🐛 Fixes
+
+- update arrow-air refs to aetheric-oss ([`8428417`](https://github.com/aetheric-oss/svc-pricing/commit/842841720230c4391f11085bf11ec80450988d55))
+- add error log to failure on Config unwrap ([`943ccfb`](https://github.com/aetheric-oss/svc-pricing/commit/943ccfb5dfeb6b82cf7c495dab07ce90f92b9fc6))
+- update references to aetheric-oss ([`10849ea`](https://github.com/aetheric-oss/svc-pricing/commit/10849eaf3dc1ea0768840ffd82d940bcdb079ea8))
+
+### 🛠 Maintenance
+
+- terraform provisioned file changes ([`281a991`](https://github.com/aetheric-oss/svc-pricing/commit/281a99161da63f7fb302a305e54e68614403dda2))
+- update cargo dependencies ([`40ba028`](https://github.com/aetheric-oss/svc-pricing/commit/40ba02878ac279c0b901412293e749c187b3529a))
+- update dependencies ([`7a6df8f`](https://github.com/aetheric-oss/svc-pricing/commit/7a6df8fbcce1e9564323d701cea3fdb36b3c6707))
+- terraform provisioned file changes ([`fc11ea5`](https://github.com/aetheric-oss/svc-pricing/commit/fc11ea538f01bec379b353ae1153a4611c0e4b60))
+- tofu provisioned file changes ([`4376153`](https://github.com/aetheric-oss/svc-pricing/commit/437615340c0d336c95e922fb1d2b479d23daea7a))
+- final fixes for R4 ([`a054986`](https://github.com/aetheric-oss/svc-pricing/commit/a054986d54fc47b39875bb516b5add71809b60dd))
+- update references ([`030a5b9`](https://github.com/aetheric-oss/svc-pricing/commit/030a5b961079a85ae4e0e49cac94fa4ea1012806))
+
 ## [Release 0.5.1](https://github.com/Arrow-air/svc-pricing/releases/tag/v0.5.1)
 
 ### 🔥 Refactorings

@@ -2,7 +2,7 @@
 description = "Aetheric Pricing service gRPC client"
 keywords    = ["vtol", "client", "grpc", "pricing"]  # max 5
 name        = "svc-pricing-client-grpc"
-version     = "0.5.2-develop.4"
+version     = "0.6.0"
 
 categories.workspace   = true
 edition.workspace      = true

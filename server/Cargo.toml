@@ -2,7 +2,7 @@
 description = "Aetheric pricing service gRPC server"
 keywords    = ["vtol", "server", "grpc", "rest", "pricing"] # max 5
 name        = "svc-pricing"
-version     = "0.5.2-develop.4"
+version     = "0.6.0"
 
 authors.workspace      = true
 categories.workspace   = true
